@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:orientation="vertical">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_web_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_email_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_twitter_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_facebook_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/contact_neg_margin"
+        android:background="@null"
+        android:orientation="vertical">
+        
+        <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="32dp"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_web_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenWebPage"/>
+
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="32dp"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_email_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenEmail"/>
+	    
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="32dp"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_twitter_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenTwitter"/>
+	    
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="32dp"
+	        android:layout_marginLeft="@dimen/contact_facebook_margin"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_facebook_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenFacebook"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:background="@null"
+        android:orientation="vertical">
+	    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_phone_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/contact_address_text"
+            android:textSize="@dimen/contact_text_size"
+            android:textColor="@color/contact_heading_text_color"/>
+	    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="18dp"
+        android:orientation="vertical">
+        
+        <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="32dp"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_phone_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenPhone"/>
+	    
+	    <Button 
+	        android:layout_width="wrap_content"
+	        android:layout_height="@dimen/contact_address_size"
+	        android:gravity="left|center_vertical"
+	        android:text="@string/contact_address_button"
+	        android:textSize="@dimen/contact_text_size"
+	        android:textColor="@color/contact_link_text_color"
+	        android:background="@null"
+	        android:onClick="OpenMaps"/>
+	    
+    </LinearLayout>
+    
+</LinearLayout>

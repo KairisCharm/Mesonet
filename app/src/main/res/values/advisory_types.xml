@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="W">Warning</string>
+    <string name="F">Forecast</string>
+    <string name="A">Watch</string>
+    <string name="O">Outlook</string>
+    <string name="Y">Advisory</string>
+    <string name="N">Synopsis</string>
+    <string name="S">Statement</string>
+    
+    <!-- DO NOT CHANGE THE ORDER WITHOUT REASON! This array defines how to sort the significance levels.-->
+    <array name="significance_order">
+        <item>@string/W</item>
+        <item>@string/F</item>
+        <item>@string/A</item>
+        <item>@string/O</item>
+        <item>@string/Y</item>
+        <item>@string/N</item>
+        <item>@string/S</item>
+    </array>
+    
+    <string name="AF">Ashfall</string>
+    <string name="AS">Air Stagnation</string>
+    <string name="BS">Blowing Snow</string>
+    <string name="BW">Brisk Wind</string>
+	<string name="BZ">Blizzard</string>
+	<string name="CF">Coastal Flood</string>
+	<string name="DS">Dust Storm</string>
+	<string name="DU">Blowing Dust</string>
+	<string name="EC">Extreme Cold</string>
+	<string name="EH">Excessive Heat</string>
+	<string name="EW">Extreme Wind</string>
+	<string name="FA">Areal Flood</string>
+	<string name="FF">Flash Flood</string>
+	<string name="FG">Dense Fog</string>
+	<string name="FL">Flood</string>
+	<string name="FR">Frost</string>
+	<string name="FW">Fire Weather</string>
+	<string name="FZ">Freeze</string>
+	<string name="GL">Gale</string>
+	<string name="HF">Hurricane Force Wind</string>
+	<string name="HI">Inland Hurricane</string>
+	<string name="HS">Heavy Snow</string>
+	<string name="HT">Heat</string>
+	<string name="HU">Hurricane</string>
+	<string name="HW">High Wind</string>
+	<string name="HY">Hydrologic</string>
+	<string name="HZ">Hard Freeze</string>
+	<string name="IP">Sleet</string>
+	<string name="IS">Ice Storm</string>
+	<string name="LB">Lake Effect Snow and Blowing Snow</string>
+	<string name="LE">Lake Effect Snow</string>
+	<string name="LO">Low Water</string>
+	<string name="LS">Lakeshore Flood</string>
+	<string name="LW">Lake Wind</string>
+	<string name="MA">Marine</string>
+	<string name="RB">Small Craft for Rough Bar</string>
+	<string name="SB">Snow and Blowing Snow</string>
+	<string name="SC">Small Craft</string>
+	<string name="SE">Hazardous Seas</string>
+	<string name="SI">Small Craft for Winds</string>
+	<string name="SM">Dense Smoke</string>
+	<string name="SN">Snow</string>
+	<string name="SR">Storm</string>
+	<string name="SU">High Surf</string>
+	<string name="SV">Severe Thunderstorm</string>
+	<string name="SW">Small Craft for Hazardous Seas</string>
+	<string name="TI">Inland Tropical Storm</string>
+	<string name="TO">Tornado</string>
+	<string name="TR">Tropical Storm</string>
+	<string name="TS">Tsunami</string>
+	<string name="TY">Typhoon</string>
+	<string name="UP">Ice Accretion</string>
+	<string name="WC">Wind Chill</string>
+	<string name="WI">Wind</string>
+	<string name="WS">Winter Storm</string>
+	<string name="WW">Winter Weather</string>
+	<string name="ZF">Freezing Fog</string>
+	<string name="ZR">Freezing Rain</string>
+    
+	<!-- DO NOT CHANGE THE ORDER WITHOUT REASON! This array defines how to sort the phenomena types.-->
+    <array name="phenomena_order">
+        <item>@string/TO</item>
+        <item>@string/SV</item>
+        <item>@string/BZ</item>
+        <item>@string/IS</item>
+        <item>@string/FW</item>
+        <item>@string/FF</item>
+        <item>@string/FL</item>
+        <item>@string/FA</item>
+        <item>@string/EW</item>
+        <item>@string/HW</item>
+        <item>@string/WI</item>
+        <item>@string/ZR</item>
+        <item>@string/HS</item>
+        <item>@string/WS</item>
+        <item>@string/WW</item>
+        <item>@string/IP</item>
+        <item>@string/EC</item>
+        <item>@string/WC</item>
+        <item>@string/EH</item>
+        <item>@string/HT</item>
+        <item>@string/SR</item>
+        <item>@string/HZ</item>
+        <item>@string/BS</item>
+        <item>@string/FG</item>
+        <item>@string/FZ</item>
+        <item>@string/FR</item>
+        <item>@string/SB</item>
+        <item>@string/DU</item>
+        <item>@string/SN</item>
+        <item>@string/HI</item>
+        <item>@string/LW</item>
+        <item>@string/ZF</item>
+        <item>@string/DS</item>
+        <item>@string/TY</item>
+        <item>@string/AF</item>
+        <item>@string/SC</item>
+        <item>@string/GL</item>
+        <item>@string/SE</item>
+        <item>@string/LB</item>
+        <item>@string/MA</item>
+        <item>@string/CF</item>
+        <item>@string/SI</item>
+        <item>@string/LE</item>
+        <item>@string/TI</item>
+        <item>@string/SM</item>
+        <item>@string/HU</item>
+        <item>@string/AS</item>
+        <item>@string/HY</item>
+        <item>@string/LO</item>
+        <item>@string/TR</item>
+        <item>@string/SU</item>
+        <item>@string/TS</item>
+        <item>@string/UP</item>
+        <item>@string/BW</item>
+        <item>@string/SW</item>
+        <item>@string/LS</item>
+        <item>@string/HF</item>
+        <item>@string/RB</item>
+        
+    </array>
+    
+</resources>

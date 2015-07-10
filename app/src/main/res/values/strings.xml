@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mesonet</string>
+    <string name="empty_temp">&#8212;&#176;</string>
+    <string name="empty_field">&#8212;</string>
+    <string name="current_feelsLike">Feels Like</string>
+    <string name="current_dewpoint">Dewpoint</string>
+    <string name="current_24hrRain">24-hr Rainfall</string>
+    <string name="current_wind">Wind</string>
+    <string name="current_humidity">Humidity</string>
+    <string name="current_windgusts">Wind Gusts</string>
+    <string name="current_pressure">Pressure</string>
+    <string name="current_time">Observed at &#8212;:&#8212;</string>
+    <string name="empty_time">&#8212;:&#8212;</string>
+    <string name="site_name">&#8212;</string>
+    <string name="embedded_database_modtime">1343527968000</string>
+    <string name="menu_settings">Settings</string>
+    <string name="default_station">nrmn</string>
+    <string name="default_radar">Oklahoma City</string>
+    <string name="empty_text"></string>
+    <string name="siteinfo_update_interval_ms">3600000</string>
+    <string name="advisories_update_interval_ms">60000</string>
+    <string name="advisories_empty_text">No advisories in effect.</string>
+    
+    <string name="contact_web_text">Web:</string>
+    <string name="contact_web_button">mesonet.org</string>
+    <string name="contact_web_address">http://www.mesonet.org</string>
+    <string name="contact_email_text">Email:</string>
+    <string name="contact_email_button">operator@mesonet.org</string>
+    <string name="contact_twitter_text">Twitter:</string>
+    <string name="contact_twitter_button">\@okmesonet</string>
+    <string name="contact_twitter_page">okmesonet</string>
+    <string name="contact_twitter_userid">85642187</string>
+    <string name="contact_facebook_text">Facebook:</string>
+    <string name="contact_facebook_button">Oklahoma Mesonet</string>
+    <string name="contact_facebook_userid">101813120731</string>
+    <string name="contact_facebook_url">https://www.facebook.com/mesonet</string>
+    <string name="contact_phone_text">Phone:</string>
+    <string name="contact_phone_button">405&#8211;325&#8211;2541</string>
+    <string name="contact_phone_number">4053252541</string>
+    <string name="contact_address_text">Address:</string>
+    <string name="contact_address_button">120 David L. Boren Blvd.\n
+	Suite 2900\n
+	Norman, OK 73071</string>
+	<string name="contact_address">120+David+L.+Boren+Blvd.+Norman,+OK+73071</string>
+	
+	<string name="advisory_heading">Advisories</string>
+	
+	<string name="time_observed_at">"Observed at "</string>
+	<string name="rain_inches">" in"</string>
+	<string name="rain_millimeters">" mm"</string>
+	<string name="wind">"Wind "</string>
+	<string name="wind_calm">Calm</string>
+	<string name="wind_at">" at "</string>
+	<string name="wind_mph">" MPH"</string>
+	<string name="wind_mps">" mps"</string>
+	<string name="pressure_inches">" inHg"</string>
+	<string name="pressure_millimeters">" mm"</string>
+	
+	<string name="wind_north">N</string>
+	<string name="wind_north_northeast">NNE</string>
+	<string name="wind_northeast">NE</string>
+	<string name="wind_east_northeast">ENE</string>
+	<string name="wind_east">E</string>
+	<string name="wind_east_southeast">ESE</string>
+	<string name="wind_southeast">SE</string>
+	<string name="wind_south_southeast">SSE</string>
+	<string name="wind_south">S</string>
+	<string name="wind_south_southwest">SSW</string>
+	<string name="wind_southwest">SW</string>
+	<string name="wind_west_southwest">WSW</string>
+	<string name="wind_west">W</string>
+	<string name="wind_west_northwest">WNW</string>
+	<string name="wind_northwest">NW</string>
+	<string name="wind_north_northwest">NNW</string>
+	
+	<string name="forecast_low">Low</string>
+	<string name="forecast_high">High</string>
+	
+	<string name="settings_english">English Units</string>
+	<string name="settings_metric">Metric Units</string>
+	<string name="settings_radar_trans">Radar Transparency</string>
+	<string name="settings_ticker">Ticker</string>
+	<string name="settings_contact">Contact</string>
+	<string name="settings_about">About and Terms of Use</string>
+	
+	<string name="popup_ticker_title">Ticker</string>
+	<string name="popup_contact_title">Contact</string>
+	<string name="popup_about_title">About and Terms of Use</string>
+	<string name="popup_close_button">Close</string>
+	
+	<string name="widget_timeheading">Last observed:</string>
+
+    <string name="mesonet_url">http://www.mesonet.org</string>
+    <string name="ticker_url">/index.php/app/ticker_article/latest.ticker.txt</string>
+    <string name="site_url">/find</string>
+    <string name="site_filename">siteinfo-json</string>
+    <string name="curr_cond_url">/index.php/app/latest_iphone</string>
+    <string name="forecast_url">/index.php/app/forecast</string>
+    <string name="forecast_image_url">/images/fcicons-android</string>
+    <string name="forecast_replace_image_url">http://www.nws.noaa.gov/weather/images/fcicons</string>
+    <string name="meteogram_url">/data/public/mesonet/meteograms/%S.met.gif</string>
+    <string name="maps_url">http://content.mesonet.org/mesonet/mobile-app</string>
+    <string name="maps_filename">products.json</string>
+    <string name="radar_xml_url">/data/nids/maps/realtime/frames_%S_N0Q.xml</string>
+    <string name="advisory_list_url">/data/public/noaa/wwa</string>
+    <string name="advisory_url">/data/public/noaa/text/archive</string>
+    <string name="advisory_filename">mobile-ok.txt</string>
+    <string name="analytics_id">UA-54075447-1</string>
+    <string name="analytics_view_name">App uses</string>
+    
+</resources>

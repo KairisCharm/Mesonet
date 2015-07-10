@@ -1,0 +1,86 @@
+<org.mesonet.app.ScalableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:tag="forecast_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	base_width="3.2"
+	base_height="6.15"
+	android:orientation="vertical"
+	android:background="@color/day_background"
+	android:baselineAligned="false">
+	
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_time"
+        android:lines="2"
+        android:layout_width="match_parent"
+       	android:layout_height="120.5dp"
+       	android:layout_marginTop="48dp"
+       	android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+        android:text="@string/empty_field"
+        android:textSize="48dp"
+        android:textColor="@color/blue_text_color"
+        android:textAllCaps="true"
+        android:gravity="center_horizontal"/>
+    
+	<ImageView
+		android:tag="forecast_image"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+		android:adjustViewBounds="true"
+		android:scaleType="fitCenter"
+		android:gravity="center_horizontal"
+		android:contentDescription="@string/empty_field"/>
+    
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_loworhigh"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginLeft="12dp"
+        android:text="@string/empty_field"
+        android:textSize="56dp"
+        android:textColor="@color/white_text_color"/>
+    
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_condition"
+        android:lines="2"
+        android:layout_width="match_parent"
+        android:layout_height="120.5dp"
+		android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/empty_field"
+        android:textSize="48dp"
+        android:textColor="@color/white_text_color"/>
+    
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_winddir"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+		android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+		android:layout_marginBottom="-8dp"
+		android:gravity="bottom"
+        android:text="@string/empty_field"
+        android:textSize="48dp"
+        android:textColor="@color/blue_text_color"/>
+
+	<org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_windspeed"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+		android:layout_marginBottom="48dp"
+        android:text="@string/empty_field"
+        android:textSize="48dp"
+        android:textColor="@color/blue_text_color"/>
+   
+</org.mesonet.app.ScalableLayout>

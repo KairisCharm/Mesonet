@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/local_abs_tab"
+        android:title="@string/empty_text"
+        android:icon="@drawable/locate_btn_image"
+        android:showAsAction="always"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</menu>

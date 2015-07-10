@@ -1,0 +1,63 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.mesonet.app" >
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Mesotheme"
+        android:name=".MesonetApp"
+        android:largeHeap="true">
+
+        <uses-library android:name="com.google.android.maps" />
+        
+        <receiver
+            android:name=".WidgetProviderSmall"
+            android:label="Mesonet Current" >
+	        <intent-filter>
+	            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+	        </intent-filter>
+	
+	        <meta-data
+	            android:name="android.appwidget.provider"
+	            android:resource="@xml/widget_small_info" />
+		</receiver>
+		
+        <receiver
+            android:name=".WidgetProviderLarge"
+            android:label="Mesonet Current + Forecast" >
+	        <intent-filter>
+	            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+	        </intent-filter>
+	        
+	        <meta-data
+	            android:name="android.appwidget.provider"
+	            android:resource="@xml/widget_large_info" />
+		</receiver>
+
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <!--meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDID60sIJj34KbSbvWBYumu04sYRb9TSoo"/--> <!--  Bekah -->
+        <!--meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBtJGIatam4_Hhiv-MtE-mpKwPnWMqbo98"/--> <!--  Nathan -->
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDpZEQbyxJQjk05awYVNrCtbY9OW-a2WpM"/> <!--  Developer account -->
+        
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+        <!--android:configChanges="orientation|screenSize|screenLayout"-->
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+        </activity>
+    </application>
+
+</manifest>

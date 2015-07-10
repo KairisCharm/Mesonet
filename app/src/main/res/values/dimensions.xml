@@ -1,0 +1,8 @@
+<resources>
+    <!-- -2px == wrap_content -->
+    <dimen name="contact_popup_width">-2px</dimen>
+    <dimen name="contact_text_size">14sp</dimen>
+    <dimen name="contact_neg_margin">-8dp</dimen>
+    <dimen name="contact_facebook_margin">16dp</dimen>
+    <dimen name="contact_address_size">64dp</dimen>
+</resources>

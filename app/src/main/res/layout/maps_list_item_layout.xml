@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/maps_list_separator"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textAllCaps="true"
+        android:minHeight="32dp" />
+
+	<TextView
+	    android:id="@+id/maps_list_title"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="18sp"
+	    android:gravity="center_vertical"
+	    android:paddingLeft="16dp"
+	    android:paddingRight="16dp"
+	    android:minHeight="48dp"/>
+</LinearLayout>

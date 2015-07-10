@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="right">
+	
+	<Button 
+	    android:id="@+id/action_bar_share_button"
+	    android:layout_width="?attr/actionBarSize"
+	    android:layout_height="?attr/actionBarSize"
+	    android:gravity="center_vertical|right"
+	    android:background="@drawable/ic_action_share"
+	    android:visibility="gone"
+	    android:onClick="ShareMap"
+	    android:layout_alignParentRight="true"/>
+	
+	<TextView
+	    android:id="@+id/action_bar_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="?attr/actionBarSize"
+	    android:layout_toLeftOf="@id/action_bar_share_button"
+        android:layout_marginRight="8dp"
+	    android:gravity="center_vertical|right"
+	    android:textSize="20sp"
+	    android:textColor="@color/white_text_color"/>
+	
+</RelativeLayout>

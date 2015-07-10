@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="OKC001">Adair</string>
+	<string name="OKC003">Alfalfa</string>
+	<string name="OKC005">Atoka</string>
+	<string name="OKC007">Beaver</string>
+	<string name="OKC009">Beckham</string>
+	<string name="OKC011">Blaine</string>
+	<string name="OKC013">Bryan</string>
+	<string name="OKC015">Caddo</string>
+	<string name="OKC017">Canadian</string>
+	<string name="OKC019">Carter</string>
+	<string name="OKC021">Cherokee</string>
+	<string name="OKC023">Choctaw</string>
+	<string name="OKC025">Cimarron</string>
+	<string name="OKC027">Cleveland</string>
+	<string name="OKC029">Coal</string>
+	<string name="OKC031">Comanche</string>
+	<string name="OKC033">Cotton</string>
+	<string name="OKC035">Craig</string>
+	<string name="OKC037">Creek</string>
+	<string name="OKC039">Custer</string>
+	<string name="OKC041">Delaware</string>
+	<string name="OKC043">Dewey</string>
+	<string name="OKC045">Ellis</string>
+	<string name="OKC047">Garfield</string>
+	<string name="OKC049">Garvin</string>
+	<string name="OKC051">Grady</string>
+	<string name="OKC053">Grant</string>
+	<string name="OKC055">Greer</string>
+	<string name="OKC057">Harmon</string>
+	<string name="OKC059">Harper</string>
+	<string name="OKC061">Haskell</string>
+	<string name="OKC063">Hughes</string>
+	<string name="OKC065">Jackson</string>
+	<string name="OKC067">Jefferson</string>
+	<string name="OKC069">Johnston</string>
+	<string name="OKC071">Kay</string>
+	<string name="OKC073">Kingfisher</string>
+	<string name="OKC075">Kiowa</string>
+	<string name="OKC077">Latimer</string>
+	<string name="OKC079">Le Flore</string>
+	<string name="OKC081">Lincoln</string>
+	<string name="OKC083">Logan</string>
+	<string name="OKC085">Love</string>
+	<string name="OKC087">McClain</string>
+	<string name="OKC089">McCurtain</string>
+	<string name="OKC091">McIntosh</string>
+	<string name="OKC093">Major</string>
+	<string name="OKC095">Marshall</string>
+	<string name="OKC097">Mayes</string>
+	<string name="OKC099">Murray</string>
+	<string name="OKC101">Muskogee</string>
+	<string name="OKC103">Noble</string>
+	<string name="OKC105">Nowata</string>
+	<string name="OKC107">Okfuskee</string>
+	<string name="OKC109">Oklahoma</string>
+	<string name="OKC111">Okmulgee</string>
+	<string name="OKC113">Osage</string>
+	<string name="OKC115">Ottawa</string>
+	<string name="OKC117">Pawnee</string>
+	<string name="OKC119">Payne</string>
+	<string name="OKC121">Pittsburg</string>
+	<string name="OKC123">Pontotoc</string>
+	<string name="OKC125">Pottawatomie</string>
+	<string name="OKC127">Pushmataha</string>
+	<string name="OKC129">Roger Mills</string>
+	<string name="OKC131">Rogers</string>
+	<string name="OKC133">Seminole</string>
+	<string name="OKC135">Sequoyah</string>
+	<string name="OKC137">Stephens</string>
+	<string name="OKC139">Texas</string>
+	<string name="OKC141">Tillman</string>
+	<string name="OKC143">Tulsa</string>
+	<string name="OKC145">Wagoner</string>
+	<string name="OKC147">Washington</string>
+	<string name="OKC149">Washita</string>
+	<string name="OKC151">Woods</string>
+	<string name="OKC153">Woodward</string>
+	
+	<string name="OKZ001">Cimarron</string>
+	<string name="OKZ002">Texas</string>
+	<string name="OKZ003">Beaver</string>
+	<string name="OKZ004">Harper</string>
+	<string name="OKZ005">Woods</string>
+	<string name="OKZ006">Alfalfa</string>
+	<string name="OKZ007">Grant</string>
+	<string name="OKZ008">Kay</string>
+	<string name="OKZ009">Ellis</string>
+	<string name="OKZ010">Woodward</string>
+	<string name="OKZ011">Major</string>
+	<string name="OKZ012">Garfield</string>
+	<string name="OKZ013">Noble</string>
+	<string name="OKZ014">Roger Mills</string>
+	<string name="OKZ015">Dewey</string>
+	<string name="OKZ016">Custer</string>
+	<string name="OKZ017">Blaine</string>
+	<string name="OKZ018">Kingfisher</string>
+	<string name="OKZ019">Logan</string>
+	<string name="OKZ020">Payne</string>
+	<string name="OKZ021">Beckham</string>
+	<string name="OKZ022">Washita</string>
+	<string name="OKZ023">Caddo</string>
+	<string name="OKZ024">Canadian</string>
+	<string name="OKZ025">Oklahoma</string>
+	<string name="OKZ026">Lincoln</string>
+	<string name="OKZ027">Grady</string>
+	<string name="OKZ028">McClain</string>
+	<string name="OKZ029">Cleveland</string>
+	<string name="OKZ030">Pottawatomie</string>
+	<string name="OKZ031">Seminole</string>
+	<string name="OKZ032">Hughes</string>
+	<string name="OKZ033">Harmon</string>
+	<string name="OKZ034">Greer</string>
+	<string name="OKZ035">Kiowa</string>
+	<string name="OKZ036">Jackson</string>
+	<string name="OKZ037">Tillman</string>
+	<string name="OKZ038">Comanche</string>
+	<string name="OKZ039">Stephens</string>
+	<string name="OKZ040">Garvin</string>
+	<string name="OKZ041">Murray</string>
+	<string name="OKZ042">Pontotoc</string>
+	<string name="OKZ043">Coal</string>
+	<string name="OKZ044">Cotton</string>
+	<string name="OKZ045">Jefferson</string>
+	<string name="OKZ046">Carter</string>
+	<string name="OKZ047">Johnston</string>
+	<string name="OKZ048">Atoka</string>
+	<string name="OKZ049">Pushmataha</string>
+	<string name="OKZ050">Love</string>
+	<string name="OKZ051">Marshall</string>
+	<string name="OKZ052">Bryan</string>
+	<string name="OKZ053">Choctaw</string>
+	<string name="OKZ054">Osage</string>
+	<string name="OKZ055">Washington</string>
+	<string name="OKZ056">Nowata</string>
+	<string name="OKZ057">Craig</string>
+	<string name="OKZ058">Ottawa</string>
+	<string name="OKZ059">Pawnee</string>
+	<string name="OKZ060">Tulsa</string>
+	<string name="OKZ061">Rogers</string>
+	<string name="OKZ062">Mayes</string>
+	<string name="OKZ063">Delaware</string>
+	<string name="OKZ064">Creek</string>
+	<string name="OKZ065">Okfuskee</string>
+	<string name="OKZ066">Okmulgee</string>
+	<string name="OKZ067">Wagoner</string>
+	<string name="OKZ068">Cherokee</string>
+	<string name="OKZ069">Adair</string>
+	<string name="OKZ070">Muskogee</string>
+	<string name="OKZ071">McIntosh</string>
+	<string name="OKZ072">Sequoyah</string>
+	<string name="OKZ073">Pittsburg</string>
+	<string name="OKZ074">Haskell</string>
+	<string name="OKZ075">Latimer</string>
+	<string name="OKZ076">Le Flore</string>
+	<string name="OKZ077">McCurtain</string>
+	
+	<array name="county_array">
+	    <item>@string/OKC001</item>
+		<item>@string/OKC003</item>
+		<item>@string/OKC005</item>
+		<item>@string/OKC007</item>
+		<item>@string/OKC009</item>
+		<item>@string/OKC011</item>
+		<item>@string/OKC013</item>
+		<item>@string/OKC015</item>
+		<item>@string/OKC017</item>
+		<item>@string/OKC019</item>
+		<item>@string/OKC021</item>
+		<item>@string/OKC023</item>
+		<item>@string/OKC025</item>
+		<item>@string/OKC027</item>
+		<item>@string/OKC029</item>
+		<item>@string/OKC031</item>
+		<item>@string/OKC033</item>
+		<item>@string/OKC035</item>
+		<item>@string/OKC037</item>
+		<item>@string/OKC039</item>
+		<item>@string/OKC041</item>
+		<item>@string/OKC043</item>
+		<item>@string/OKC045</item>
+		<item>@string/OKC047</item>
+		<item>@string/OKC049</item>
+		<item>@string/OKC051</item>
+		<item>@string/OKC053</item>
+		<item>@string/OKC055</item>
+		<item>@string/OKC057</item>
+		<item>@string/OKC059</item>
+		<item>@string/OKC061</item>
+		<item>@string/OKC063</item>
+		<item>@string/OKC065</item>
+		<item>@string/OKC067</item>
+		<item>@string/OKC069</item>
+		<item>@string/OKC071</item>
+		<item>@string/OKC073</item>
+		<item>@string/OKC075</item>
+		<item>@string/OKC077</item>
+		<item>@string/OKC079</item>
+		<item>@string/OKC081</item>
+		<item>@string/OKC083</item>
+		<item>@string/OKC085</item>
+		<item>@string/OKC087</item>
+		<item>@string/OKC089</item>
+		<item>@string/OKC091</item>
+		<item>@string/OKC093</item>
+		<item>@string/OKC095</item>
+		<item>@string/OKC097</item>
+		<item>@string/OKC099</item>
+		<item>@string/OKC101</item>
+		<item>@string/OKC103</item>
+		<item>@string/OKC105</item>
+		<item>@string/OKC107</item>
+		<item>@string/OKC109</item>
+		<item>@string/OKC111</item>
+		<item>@string/OKC113</item>
+		<item>@string/OKC115</item>
+		<item>@string/OKC117</item>
+		<item>@string/OKC119</item>
+		<item>@string/OKC121</item>
+		<item>@string/OKC123</item>
+		<item>@string/OKC125</item>
+		<item>@string/OKC127</item>
+		<item>@string/OKC129</item>
+		<item>@string/OKC131</item>
+		<item>@string/OKC133</item>
+		<item>@string/OKC135</item>
+		<item>@string/OKC137</item>
+		<item>@string/OKC139</item>
+		<item>@string/OKC141</item>
+		<item>@string/OKC143</item>
+		<item>@string/OKC145</item>
+		<item>@string/OKC147</item>
+		<item>@string/OKC149</item>
+		<item>@string/OKC151</item>
+		<item>@string/OKC153</item>
+		
+		<item>@string/OKZ001</item>
+		<item>@string/OKZ002</item>
+		<item>@string/OKZ003</item>
+		<item>@string/OKZ004</item>
+		<item>@string/OKZ005</item>
+		<item>@string/OKZ006</item>
+		<item>@string/OKZ007</item>
+		<item>@string/OKZ008</item>
+		<item>@string/OKZ009</item>
+		<item>@string/OKZ010</item>
+		<item>@string/OKZ011</item>
+		<item>@string/OKZ012</item>
+		<item>@string/OKZ013</item>
+		<item>@string/OKZ014</item>
+		<item>@string/OKZ015</item>
+		<item>@string/OKZ016</item>
+		<item>@string/OKZ017</item>
+		<item>@string/OKZ018</item>
+		<item>@string/OKZ019</item>
+		<item>@string/OKZ020</item>
+		<item>@string/OKZ021</item>
+		<item>@string/OKZ022</item>
+		<item>@string/OKZ023</item>
+		<item>@string/OKZ024</item>
+		<item>@string/OKZ025</item>
+		<item>@string/OKZ026</item>
+		<item>@string/OKZ027</item>
+		<item>@string/OKZ028</item>
+		<item>@string/OKZ029</item>
+		<item>@string/OKZ030</item>
+		<item>@string/OKZ031</item>
+		<item>@string/OKZ032</item>
+		<item>@string/OKZ033</item>
+		<item>@string/OKZ034</item>
+		<item>@string/OKZ035</item>
+		<item>@string/OKZ036</item>
+		<item>@string/OKZ037</item>
+		<item>@string/OKZ038</item>
+		<item>@string/OKZ039</item>
+		<item>@string/OKZ040</item>
+		<item>@string/OKZ041</item>
+		<item>@string/OKZ042</item>
+		<item>@string/OKZ043</item>
+		<item>@string/OKZ044</item>
+		<item>@string/OKZ045</item>
+		<item>@string/OKZ046</item>
+		<item>@string/OKZ047</item>
+		<item>@string/OKZ048</item>
+		<item>@string/OKZ049</item>
+		<item>@string/OKZ050</item>
+		<item>@string/OKZ051</item>
+		<item>@string/OKZ052</item>
+		<item>@string/OKZ053</item>
+		<item>@string/OKZ054</item>
+		<item>@string/OKZ055</item>
+		<item>@string/OKZ056</item>
+		<item>@string/OKZ057</item>
+		<item>@string/OKZ058</item>
+		<item>@string/OKZ059</item>
+		<item>@string/OKZ060</item>
+		<item>@string/OKZ061</item>
+		<item>@string/OKZ062</item>
+		<item>@string/OKZ063</item>
+		<item>@string/OKZ064</item>
+		<item>@string/OKZ065</item>
+		<item>@string/OKZ066</item>
+		<item>@string/OKZ067</item>
+		<item>@string/OKZ068</item>
+		<item>@string/OKZ069</item>
+		<item>@string/OKZ070</item>
+		<item>@string/OKZ071</item>
+		<item>@string/OKZ072</item>
+		<item>@string/OKZ073</item>
+		<item>@string/OKZ074</item>
+		<item>@string/OKZ075</item>
+		<item>@string/OKZ076</item>
+		<item>@string/OKZ077</item>
+	</array>
+    
+</resources>

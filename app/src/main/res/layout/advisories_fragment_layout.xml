@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ListView
+        android:id="@+id/advisory_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+	
+	<ScrollView
+	    android:id="@+id/advisory_display"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:visibility="gone">
+		<TextView
+			android:id="@+id/advisory_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scrollbars="vertical"/>
+	</ScrollView>
+	
+	<TextView
+	    android:id="@+id/advisories_empty_list"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:textSize="18sp"
+	    android:visibility="gone"
+	    android:gravity="center"
+	    android:text="@string/advisories_empty_text"/>
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="tab_image_margin">8dp</dimen>
+    <dimen name="map_image_margin">5dp</dimen>
+    <dimen name="advisory_count_margin">6dp</dimen>
+    <!--dimen name="advisory_count_image_margin_left">-10.75dp</dimen>
+    <dimen name="advisory_count_text_margin_left">-22dp</dimen>
+    <dimen name="advisory_count_size">21.5dp</dimen-->
+    
+    <item name="local_page_count" type="integer">5</item>
+    <item name="forecasts_per_page" type="integer">2</item>
+
+</resources>

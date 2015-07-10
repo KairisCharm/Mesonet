@@ -1,0 +1,63 @@
+<org.mesonet.app.ScalableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:tag="forecast_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	base_width="3.6"
+	base_height="5.85"
+	android:background="@color/day_background"
+	android:orientation="vertical"
+	android:baselineAligned="false">
+	
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_time"
+        android:lines="2"
+        android:layout_width="match_parent"
+       	android:layout_height="72dp"
+       	android:layout_marginTop="16dp"
+       	android:layout_marginLeft="36dp"
+       	android:layout_marginRight="36dp"
+        android:text="@string/empty_field"
+        android:textSize="28dp"
+        android:textColor="@color/blue_text_color"
+        android:textAllCaps="true"
+        android:gravity="center_horizontal|top"/>
+    
+	<ImageView
+		android:tag="forecast_image"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:layout_marginLeft="36dp"
+		android:layout_marginRight="36dp"
+		android:paddingTop="0dp"
+		android:layout_gravity="center_horizontal"
+		android:adjustViewBounds="true"
+		android:scaleType="fitCenter"
+		android:contentDescription="@string/empty_field" />
+    
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_loworhigh"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/empty_field"
+        android:textSize="32dp"
+        android:textColor="@color/white_text_color"/>
+    
+    <org.mesonet.app.AutoResizeTextView
+        android:tag="forecast_condition"
+        android:lines="2"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/empty_field"
+        android:textSize="28dp"
+        android:textColor="@color/blue_text_color"
+        android:gravity="top"/>
+   
+</org.mesonet.app.ScalableLayout>

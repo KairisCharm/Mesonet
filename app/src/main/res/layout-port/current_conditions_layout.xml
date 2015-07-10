@@ -1,0 +1,140 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_vertical"
+	android:weightSum="2"
+	android:orientation="horizontal"
+	android:baselineAligned="false">
+
+	<org.mesonet.app.ScalableLayout
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		base_width="3.6"
+		base_height="5.85"
+		android:gravity="center_vertical"
+		android:orientation="vertical"
+		android:baselineAligned="false">
+	    
+	    <TextView
+	        android:id="@+id/current_time"
+	        android:layout_width="100pct"
+	        android:layout_height="32.5dp"
+	        android:layout_marginLeft="36dp"
+	        android:text="@string/current_time"
+	        android:textColor="@color/blue_text_color"
+	        android:textSize="100pct"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:id="@+id/current_tair"
+	        android:layout_width="match_parent"
+	        android:layout_height="197dp"
+	        android:layout_marginLeft="36dp"
+	        android:text="@string/empty_temp"
+	        android:textColor="@color/white_text_color"
+	        android:textSize="148dp"/>
+	
+	    <org.mesonet.app.AutoResizeTextView
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp"
+	        android:layout_marginLeft="36dp"
+	        android:layout_marginBottom="-8dp"
+	        android:text="@string/current_feelsLike"
+	        android:textSize="37.5dp"
+	        android:textColor="@color/blue_text_color"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:id="@+id/current_feelsLike"
+	        android:layout_width="match_parent"
+	        android:layout_height="74.5dp"
+	        android:layout_marginLeft="36dp"
+	        android:text="@string/empty_temp"
+	        android:textColor="@color/white_text_color"
+	        android:textSize="56dp"/>
+	    
+    </org.mesonet.app.ScalableLayout>
+        
+    <org.mesonet.app.ScalableLayout
+	    android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		base_width="3.6"
+		base_height="5.85"
+		android:gravity="center_vertical"
+		android:orientation="vertical"
+		android:baselineAligned="false">
+	   
+	    <ImageButton
+	        android:id="@+id/meteogram_btn"
+	        android:layout_width="224dp"
+	        android:layout_height="56dp"
+	        android:layout_marginLeft="36dp"
+	        android:adjustViewBounds="true"
+	        android:scaleType="fitStart"
+	        android:contentDescription="@string/empty_text"
+	        android:src="@drawable/meteogram_image"
+	        android:background="@null"/>
+	        
+	    <org.mesonet.app.AutoResizeTextView
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginBottom="-2dp"
+	        android:layout_marginLeft="36dp"
+	        android:layout_marginTop="20dp"
+	        android:text="@string/current_dewpoint"
+	        android:textColor="@color/blue_text_color"
+	        android:textSize="32dp"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:id="@+id/current_dewpoint"
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginLeft="36dp"
+	        android:text="@string/empty_field"
+	        android:textColor="@color/white_text_color"
+	        android:textSize="32dp"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginBottom="-2dp"
+	        android:layout_marginLeft="36dp"
+	        android:layout_marginTop="20dp"
+	        android:text="@string/current_wind"
+	        android:textColor="@color/blue_text_color"
+	        android:textSize="32dp"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:id="@+id/current_wind"
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginLeft="36dp"
+	        android:layout_marginRight="36dp"
+	        android:text="@string/empty_field"
+	        android:textColor="@color/white_text_color"
+	        android:textSize="32dp"/>
+	    
+	    <org.mesonet.app.AutoResizeTextView
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginLeft="36dp"
+	        android:layout_marginBottom="-2dp"
+	        android:text="@string/current_24hrRain"
+	        android:textSize="32dp"
+	        android:textColor="@color/blue_text_color" />
+	
+	    <org.mesonet.app.AutoResizeTextView
+	        android:id="@+id/current_24hrRain"
+	        android:layout_width="match_parent"
+	        android:layout_height="43dp"
+	        android:layout_marginLeft="36dp"
+	        android:text="@string/empty_field"
+	        android:textSize="32dp"
+	        android:textColor="@color/white_text_color"/>
+		
+	</org.mesonet.app.ScalableLayout>
+	
+</LinearLayout>

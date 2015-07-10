@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:orientation="vertical">
+	    <LinearLayout
+	        android:orientation="vertical"
+	        android:id="@+id/curr_cond_container"
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="55"
+	        android:gravity="center_vertical"
+	        android:baselineAligned="false"
+	        android:background="@color/meso_background"/>
+	    
+	    <android.support.v4.view.ViewPager
+			android:id="@+id/local_vertviewpager"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="45"/>
+	    
+	</LinearLayout>
+	
+    <WebView
+	    android:id="@+id/meteogram"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:visibility="invisible"/>
+
+</RelativeLayout>

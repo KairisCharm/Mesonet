@@ -143,7 +143,7 @@ public class SiteData
         if(index != -1)
             sSitesList.moveToPosition(index);
 
-        if(MesonetApp.Activity() != null && MesonetApp.Activity().LocalFragment() != null)
+        if(MesonetApp.Activity() != null && MainActivity.LocalFragment() != null)
             LocalFragment.SetList();
     }
 	

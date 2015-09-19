@@ -1,7 +1,6 @@
 package org.mesonet.app;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -10,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Debug;
 import android.widget.RemoteViews;
 
 

@@ -3,24 +3,23 @@ package org.mesonet.app;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.location.Location;
+
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
 
 
 
-public class MainActivity extends SherlockFragmentActivity implements LocationListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
+public class MainActivity extends AppCompatActivity implements LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {
     private MesonetActionBar mActionBar;
     private MainMenu mMenu;
@@ -173,9 +172,13 @@ public class MainActivity extends SherlockFragmentActivity implements LocationLi
         LocationManager.StartUpdating();
 	}
 
+	@Override
+	public void onConnectionSuspended(int i) {
+
+	}
 
 
-    @Override
+	@Override
     public void onTrimMemory(int inLevel)
     {
         if(inLevel == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN || MesonetActionBar.GetSelectedTab().compareTo("Radar") != 0)
@@ -183,8 +186,6 @@ public class MainActivity extends SherlockFragmentActivity implements LocationLi
     }
 
 
-
-	@Override public void onDisconnected(){}
 	@Override public void onConnectionFailed(ConnectionResult connectionResult){}
 
 

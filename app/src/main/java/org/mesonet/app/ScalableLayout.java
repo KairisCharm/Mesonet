@@ -37,16 +37,6 @@ public class ScalableLayout extends LinearLayout
 	
 	
 	
-	public ScalableLayout(Context inContext, AttributeSet inAttributes, int inDefStyle)
-	{
-        // cannot use the 3 parameter version because it is not compatible with Gingerbread, and the "super" call must be the first line in the constructor
-        super(inContext, inAttributes);
-
-		InitLayoutParams(inContext, inAttributes);
-	}
-	
-	
-	
 	@Override
 	protected void onMeasure(int inWidthMeasureSpec, int inHeightMeasureSpec)
 	{

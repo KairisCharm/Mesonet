@@ -1,11 +1,11 @@
 package org.mesonet.app;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -620,13 +620,13 @@ public class LocalFragment extends StaticFragment
 				mImage[inIndex].setImageBitmap(inData.mImage);
 				mConditionText[inIndex].setText(inData.mCondition);
 				
-				mForecastLayout[inIndex].setBackgroundColor(resources.getColor(R.color.day_background));
-				int color = resources.getColor(R.color.pink_text_color);
+				mForecastLayout[inIndex].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.day_background));
+				int color = ContextCompat.getColor(getActivity(), R.color.pink_text_color);
 				
 				if(inData.mLowOrHigh != null && inData.mLowOrHigh.compareTo(resources.getString(R.string.forecast_low)) == 0)
 				{
-					mForecastLayout[inIndex].setBackgroundColor(resources.getColor(R.color.night_background));
-					color = resources.getColor(R.color.blue_text_color);
+					mForecastLayout[inIndex].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.night_background));
+					color = ContextCompat.getColor(getActivity(), R.color.blue_text_color);
 				}
 					
 				color -= kAlphaChannel;
@@ -686,14 +686,14 @@ public class LocalFragment extends StaticFragment
 					mImage[i].setImageBitmap(null);
 					mConditionText[i].setText(emptyField);
 					
-					int color = getResources().getColor(R.color.pink_text_color);
+					int color = ContextCompat.getColor(getActivity(), R.color.pink_text_color);
 					
-					mForecastLayout[i].setBackgroundColor(getResources().getColor(R.color.day_background));
+					mForecastLayout[i].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.day_background));
 					
 					if((i % 2) == 1)
 					{
-						mForecastLayout[i].setBackgroundColor(getResources().getColor(R.color.night_background));
-						color = getResources().getColor(R.color.blue_text_color);
+						mForecastLayout[i].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.night_background));
+						color = ContextCompat.getColor(getActivity(), R.color.blue_text_color);
 					}
 					
 					color -= kAlphaChannel;

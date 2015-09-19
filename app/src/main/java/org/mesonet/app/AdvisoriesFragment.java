@@ -89,8 +89,7 @@ public class AdvisoriesFragment extends StaticFragment
                 mList.setVisibility(View.GONE);
         }
 
-        View view;
-        view = toReturn.findViewById(R.id.advisories_empty_list);
+        View view = toReturn.findViewById(R.id.advisories_empty_list);
         mList.setEmptyView(view);
 
         if(AdvisoryData.GetText() != null)

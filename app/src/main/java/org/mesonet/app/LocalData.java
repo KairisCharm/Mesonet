@@ -1,12 +1,9 @@
 package org.mesonet.app;
 
 import java.util.Date;
-import java.util.Formatter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import android.location.Location;
 
 
 

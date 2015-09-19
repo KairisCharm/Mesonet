@@ -56,7 +56,7 @@ public class RadarData implements FilenameFilter
 	public static final int kLoopImageCount = 6;
 	public static final int kDefaultImageAlpha = 191; // roughly 70% opacity
 	
-	private static TreeMap<String, RadarBoundsData> sRadarList = new TreeMap<String, RadarBoundsData>();
+	private static TreeMap<String, RadarBoundsData> sRadarList = new TreeMap<>();
 	
 	private static RadarImageInfo[] sRadarImages = new RadarImageInfo[kLoopImageCount];
     private static String[] sCurrentImagePaths = new String[kLoopImageCount];
@@ -208,7 +208,7 @@ public class RadarData implements FilenameFilter
 					exception.printStackTrace();
 				}
 
-                if(fileDate != null)
+                if(fileDate != null && anHourAgo != null)
 				    return fileDate.before(anHourAgo);
 			}
 		}
@@ -274,7 +274,7 @@ public class RadarData implements FilenameFilter
 	public static Vector<String> GetKeyList()
 	{
 		Set<String> keySet = sRadarList.keySet();
-		Vector<String> keyList = new Vector<String>(keySet.size());
+		Vector<String> keyList = new Vector<>(keySet.size());
 		keyList.addAll(sRadarList.keySet());
 		
 		return keyList;
@@ -284,19 +284,11 @@ public class RadarData implements FilenameFilter
 	
 	public static ArrayAdapter<Object> GetListAdapter()
 	{
-		return new ArrayAdapter<Object>(MesonetApp.Activity(), android.R.layout.simple_spinner_item, GetKeyList().toArray());
+		return new ArrayAdapter<>(MesonetApp.Activity(), android.R.layout.simple_spinner_item, GetKeyList().toArray());
     }
 
 
-
-    public static Date LastUpdate()
-    {
-        return sLastUpdate;
-    }
-
-
-
-    public static Date FileUpdate()
+	public static Date FileUpdate()
     {
         return sFileUpdate;
     }
@@ -441,7 +433,7 @@ public class RadarData implements FilenameFilter
 	public static int GetCityIndex()
 	{
 		Set<String> keySet = sRadarList.keySet();
-		Vector<String> keyList = new Vector<String>(keySet.size());
+		Vector<String> keyList = new Vector<>(keySet.size());
 		keyList.addAll(sRadarList.keySet());
 		
 		return keyList.indexOf(sRadarCity);
@@ -650,8 +642,7 @@ public class RadarData implements FilenameFilter
 		private static Bitmap Decode(InputStream inStream) throws IOException
 		{
             try {
-                Bitmap result = BitmapFactory.decodeStream(inStream);
-                return result;
+                return BitmapFactory.decodeStream(inStream);
             }
             catch(Exception exception)
             {
@@ -664,7 +655,7 @@ public class RadarData implements FilenameFilter
 
     public static class RadarImageInfo
     {
-        public ArrayList<RadarPixel> mPixels = new ArrayList<RadarPixel>();
+        public ArrayList<RadarPixel> mPixels = new ArrayList<>();
         public String mFilepath;
 
 

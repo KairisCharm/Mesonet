@@ -208,7 +208,7 @@ public class AutoResizeTextView extends TextView
 		
 		mMaxTextSize = getTextSize();
 		mAvailableSpaceRect = new RectF();
-        mAlreadyTriedSizes = new TreeMap<Integer, Float>();
+        mAlreadyTriedSizes = new TreeMap<>();
 
 		if (mMaxLines == 0)
 		{
@@ -255,7 +255,7 @@ public class AutoResizeTextView extends TextView
 	private float TextSizeSearch(float inStart, float inEnd, ISizeTester inSizeTester, RectF inAvailableSpace)
 	{
 		String text = getText().toString();
-		int key = ((text == null) ? 0 : text.length());
+		int key = text.length();
 		float size = 0;
 	    
 		if(mAlreadyTriedSizes.keySet().contains(key))
@@ -321,7 +321,7 @@ public class AutoResizeTextView extends TextView
 		 *         text, it takes less space than {@code availableSpace}, > 0
 		 *         otherwise
 		 */
-		public float onTestSize(float inSuggestedSize, RectF inAvailableSpace);
+		float onTestSize(float inSuggestedSize, RectF inAvailableSpace);
 	}
 	
 	

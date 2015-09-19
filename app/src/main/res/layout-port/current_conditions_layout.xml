@@ -17,15 +17,15 @@
 		android:gravity="center_vertical"
 		android:orientation="vertical"
 		android:baselineAligned="false">
-	    
-	    <TextView
-	        android:id="@+id/current_time"
-	        android:layout_width="100pct"
-	        android:layout_height="32.5dp"
-	        android:layout_marginLeft="36dp"
-	        android:text="@string/current_time"
-	        android:textColor="@color/blue_text_color"
-	        android:textSize="100pct"/>
+
+		<org.mesonet.app.AutoResizeTextView
+			android:id="@+id/current_time"
+			android:layout_width="match_parent"
+			android:layout_height="26dp"
+			android:layout_marginLeft="36dp"
+			android:text="@string/current_time"
+			android:textColor="@color/blue_text_color"
+			android:textSize="40dp"/>
 	    
 	    <org.mesonet.app.AutoResizeTextView
 	        android:id="@+id/current_tair"

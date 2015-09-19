@@ -3,11 +3,6 @@ package org.mesonet.app;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Debug;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 
 

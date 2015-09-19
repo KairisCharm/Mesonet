@@ -1,8 +1,16 @@
 package org.mesonet.app;
 
+import android.app.PendingIntent;
 import android.location.Location;
+import android.os.Looper;
 
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
 import java.util.Timer;
@@ -12,7 +20,8 @@ import java.util.TimerTask;
 public class LocationManager
 {
     private static LocationRequest sLocationRequest;
-    private static LocationClient sLocationClient;
+    private static FusedLocationProviderApi sLocationProviderApi;
+    private static GoogleApiClient sLocationClient;
     private static Location sLastLocation;
 
     private static Timer sLocationTimer = new Timer();
@@ -28,7 +37,62 @@ public class LocationManager
         sLocationRequest.setInterval(90000);
         sLocationRequest.setFastestInterval(60000);
 
-        sLocationClient = new LocationClient(MesonetApp.Activity(), MesonetApp.Activity(), MesonetApp.Activity());
+        sLocationProviderApi = new FusedLocationProviderApi() {
+            @Override
+            public Location getLastLocation(GoogleApiClient googleApiClient) {
+                return null;
+            }
+
+            @Override
+            public LocationAvailability getLocationAvailability(GoogleApiClient googleApiClient) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationListener locationListener) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationListener locationListener, Looper looper) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationCallback locationCallback, Looper looper) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, PendingIntent pendingIntent) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, LocationListener locationListener) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, PendingIntent pendingIntent) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, LocationCallback locationCallback) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> setMockMode(GoogleApiClient googleApiClient, boolean b) {
+                return null;
+            }
+
+            @Override
+            public PendingResult<Status> setMockLocation(GoogleApiClient googleApiClient, Location location) {
+                return null;
+            }
+        };
 
         sLocationTimer.schedule(new LocationTask(), 0, DataContainer.kOneMinute * 5);
     }
@@ -45,7 +109,7 @@ public class LocationManager
 
     public static void StartUpdating()
     {
-        sLocationClient.requestLocationUpdates(sLocationRequest, MesonetApp.Activity());
+        sLocationProviderApi.requestLocationUpdates(sLocationClient, sLocationRequest, MesonetApp.Activity());
     }
 
 
@@ -69,11 +133,10 @@ public class LocationManager
     public static void Disconnect()
     {
         if(sConnected && sLocationClient != null && sLocationClient.isConnected()) {
-            sLocationClient.removeLocationUpdates(MesonetApp.Activity());
+            sLocationProviderApi.removeLocationUpdates(sLocationClient, MesonetApp.Activity());
             sLocationClient.disconnect();
         }
     }
-
 
 
     private static class LocationTask extends TimerTask

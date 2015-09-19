@@ -162,15 +162,15 @@ public class AdvisoryData
 		{
 			String[] warningStrings = inCsv.split("\n");
 			
-			TreeSet<String> sigSort = new TreeSet<String>(new AdvisoryComparator());
+			TreeSet<String> sigSort = new TreeSet<>(new AdvisoryComparator());
             sigSort.addAll(Arrays.asList(warningStrings));
 			
 			Iterator<String> warningIt = sigSort.iterator();
 			
-			Vector<String> phenList = new Vector<String>();
-			Vector<String> sigList = new Vector<String>();
-			Vector<String> countyList = new Vector<String>();
-			
+			Vector<String> phenList = new Vector<>();
+			Vector<String> sigList = new Vector<>();
+			Vector<String> countyList = new Vector<>();
+
 			TypedArray phenArray = SavedDataManager.GetArrayResource(R.array.phenomena_order);
 			TypedArray sigArray = SavedDataManager.GetArrayResource(R.array.significance_order);
 			TypedArray countyArray = SavedDataManager.GetArrayResource(R.array.county_array);
@@ -205,7 +205,7 @@ public class AdvisoryData
 					String advisoryCountyString = components[5];
 					
 					String[] advisoryCounties = advisoryCountyString.split(",");
-					Vector<String> advisoryCountyNames = new Vector<String>();
+					Vector<String> advisoryCountyNames = new Vector<>();
                     advisoryCountyNames.addAll(Arrays.asList(advisoryCounties));
 					
 					int id = phenArray.getResourceId(phenList.indexOf(advisoryType.substring(0, 2)), 0);
@@ -365,8 +365,8 @@ public class AdvisoryData
 
 	private static class AdvisoryComparator implements Comparator<String>
 	{
-		Vector<String> mSigKeys = new Vector<String>();
-		Vector<String> mPhenKeys = new Vector<String>();
+		Vector<String> mSigKeys = new Vector<>();
+		Vector<String> mPhenKeys = new Vector<>();
 		
 		
 		

@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Mesotheme" parent="Theme.Sherlock">
+    <style name="Mesotheme" parent="Theme.AppCompat">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_mesotheme</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Mesotheme</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Mesotheme</item>
@@ -35,59 +35,59 @@
         
     </style>
 
-    <style name="ActionBar.Solid.Mesotheme" parent="@style/Widget.Sherlock.ActionBar.Solid">
+    <style name="ActionBar.Solid.Mesotheme" parent="Widget.AppCompat.ActionBar.Solid">
         <item name="android:background">@drawable/ab_solid_mesotheme</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_mesotheme</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_mesotheme</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Mesotheme</item>
     </style>
 
-    <style name="ActionBar.Transparent.Mesotheme" parent="@style/Widget.Sherlock.ActionBar">
+    <style name="ActionBar.Transparent.Mesotheme" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@drawable/ab_transparent_mesotheme</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Mesotheme</item>
     </style>
 	
-    <style name="PopupMenu.Mesotheme" parent="@style/Widget.Sherlock.ListPopupWindow">	
+    <style name="PopupMenu.Mesotheme" parent="Widget.AppCompat.ListPopupWindow">	
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_mesotheme</item>	
     </style>
     
-    <style name="SpinnerStyle.Mesotheme" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
+    <style name="SpinnerStyle.Mesotheme" parent="Widget.AppCompat.Spinner.DropDown.ActionBar">
         <item name="android:background">@drawable/spinner_background_ab_mesotheme</item>
     </style>
     
-    <style name="SpinnerItem.Mesotheme" parent="@style/Widget.Sherlock.TextView.SpinnerItem">
+    <style name="SpinnerItem.Mesotheme" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">@color/white_text_color</item>
     </style>
 	
-    <style name="DropDownListView.Mesotheme" parent="@style/Widget.Sherlock.ListView.DropDown">
+    <style name="DropDownListView.Mesotheme" parent="Widget.AppCompat.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_mesotheme</item>
     </style>
 
-    <style name="ActionBarTabStyle.Mesotheme" parent="@style/Widget.Sherlock.ActionBar.TabView">
+    <style name="ActionBarTabStyle.Mesotheme" parent="Widget.AppCompat.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_mesotheme</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
     
-    <style name="ActionBarTabBarStyle.Mesotheme" parent="@style/Widget.Sherlock.ActionBar.TabBar">
+    <style name="ActionBarTabBarStyle.Mesotheme" parent="Widget.AppCompat.ActionBar.TabBar">
         <item name="android:layout_width">match_parent</item>
     </style>
 	
-    <style name="DropDownNav.Mesotheme" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
+    <style name="DropDownNav.Mesotheme" parent="Widget.AppCompat.Spinner.DropDown.ActionBar">
         <item name="android:background">@drawable/spinner_background_ab_mesotheme</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_mesotheme</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_mesotheme</item>
     </style>
     
-    <style name="ProgressBar.Mesotheme" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+    <style name="ProgressBar.Mesotheme" parent="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_mesotheme</item>
     </style>
     
-    <style name="ActionButton.CloseMode.Mesotheme" parent="@style/Widget.Sherlock.ActionButton.CloseMode">
+    <style name="ActionButton.CloseMode.Mesotheme" parent="Widget.AppCompat.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_mesotheme</item>
     </style>
     
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Mesotheme.Widget" parent="@style/Theme.Sherlock">
+    <style name="Theme.Mesotheme.Widget" parent="@style/Theme.AppCompat">
         <item name="android:popupMenuStyle">@style/PopupMenu.Mesotheme</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Mesotheme</item>
     </style>

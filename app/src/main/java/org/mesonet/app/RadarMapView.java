@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.Projection;
 
@@ -56,16 +56,7 @@ public class RadarMapView extends MapView
 	}
 
 
-
-	public RadarMapView(Context inContext, GoogleMapOptions inOptions)
-	{
-		super(inContext, inOptions);
-		Init();
-	}
-	
-	
-	
-	public static void Init()
+    public static void Init()
 	{
 		sPaint = new Paint();
         sDrawingPaint = new Paint();
@@ -97,32 +88,29 @@ public class RadarMapView extends MapView
 	
 
 	@Override
-	public void dispatchDraw(Canvas inCanvas)
+	public void dispatchDraw(@NonNull Canvas inCanvas)
 	{
 		super.dispatchDraw(inCanvas);
 
-        if(inCanvas != null && getMap() != null)
+        if(getMap() != null)
         {
             Projection projection = getMap().getProjection();
 
-            if (projection != null)
-            {
-                sPaint.setAlpha(RadarData.Transparency());
+            sPaint.setAlpha(RadarData.Transparency());
 
-                Rect newDrawRect = RadarData.GetArea(0, kAccuracy, projection);
+            Rect newDrawRect = RadarData.GetArea(0, kAccuracy, projection);
 
-                if(sDrawRect == null || !newDrawRect.equals(sDrawRect)) {
-                    sDrawRect = newDrawRect;
-                    RadarFragment.TurnOffTransparencyLayout();
-                }
+            if(sDrawRect == null || !newDrawRect.equals(sDrawRect)) {
+                sDrawRect = newDrawRect;
+                RadarFragment.TurnOffTransparencyLayout();
+            }
 
-                if(sFinalImage != null) {
-                    for (int i = 0; i < kAccuracy; i++)
-                        inCanvas.drawBitmap(sFinalImage, new Rect(0, i * (sFinalImage.getHeight() / kAccuracy), sFinalImage.getWidth() - 1, ((i + 1) * (sFinalImage.getHeight() / kAccuracy)) - 1), RadarData.GetArea(i, kAccuracy, projection), sPaint);
+            if(sFinalImage != null) {
+                for (int i = 0; i < kAccuracy; i++)
+                    inCanvas.drawBitmap(sFinalImage, new Rect(0, i * (sFinalImage.getHeight() / kAccuracy), sFinalImage.getWidth() - 1, ((i + 1) * (sFinalImage.getHeight() / kAccuracy)) - 1), RadarData.GetArea(i, kAccuracy, projection), sPaint);
 
-                    if (sCurrentTime != null)
-                        RadarFragment.SetTimeText(sCurrentTime, RadarData.FileUpdate());
-                }
+                if (sCurrentTime != null)
+                    RadarFragment.SetTimeText(sCurrentTime, RadarData.FileUpdate());
             }
 
             if (sLooping)

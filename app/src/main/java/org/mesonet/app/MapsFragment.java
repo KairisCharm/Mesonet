@@ -227,6 +227,7 @@ public class MapsFragment extends StaticFragment {
         This().mSubcatList.setVisibility(View.VISIBLE);
         
         MapsData.SetSection(inSectionNumber);
+        subcatCursor.close();
 	}
 	
 	

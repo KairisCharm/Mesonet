@@ -12,8 +12,6 @@ import android.widget.RemoteViews;
 public class WidgetProviderLarge extends WidgetProvider
 {
     public WidgetForecastDownloader mWidgetForecastDownloader = new WidgetForecastDownloader();
-    private static String sData;
-
 
 
 	@Override
@@ -130,8 +128,7 @@ public class WidgetProviderLarge extends WidgetProvider
         @Override
         protected void PostExecute(DownloadTask.ResultParms inResult)
         {
-            sData = inResult.mData;
-            super.PostExecute(inResult);
+			super.PostExecute(inResult);
         }
     }
 }

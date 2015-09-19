@@ -365,8 +365,7 @@ public class MapsData
         @Override
         protected File doInBackground(String... urls)
         {
-            File imageFile = new File(Environment.getExternalStorageDirectory().toString() + "/MesoMaps");
-            imageFile = new File(imageFile.getAbsolutePath(), "/MapShare.png");
+            File imageFile = new File(MesonetApp.Activity().getCacheDir().toString() + "/MapShare.png");
 
             try
             {

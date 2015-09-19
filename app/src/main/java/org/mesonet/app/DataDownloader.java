@@ -239,7 +239,7 @@ abstract class DataDownloader
                     conn.disconnect();
                 }
                 if(resultString.compareTo("") != 0)
-                    return new ResultParms(resultString, mDownloader.mFileDate.getTime(), inParms[0].mWidget, inParms[0].mPostExecuteWhenNull);
+                    return new ResultParms(resultString, mDownloader.mFileDate.getTime(), inParms[0].mWidget);
 
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -289,11 +289,6 @@ abstract class DataDownloader
             private boolean mPostExecuteWhenNull = false;
 
 
-            public DownloadInput(DownloadInput inOriginal) {
-                this(inOriginal.Url(), inOriginal.SavedFile(), inOriginal.ForceUpdate());
-            }
-
-
             public DownloadInput(String inUrl, String inSavedFile) {
                 mUrl = inUrl;
                 mSavedFile = inSavedFile;
@@ -339,7 +334,7 @@ abstract class DataDownloader
             public WidgetProvider mWidget;
 
 
-            public ResultParms(String inData, long inLastModified, WidgetProvider inWidget, boolean inPostExecuteWhenNull) {
+            public ResultParms(String inData, long inLastModified, WidgetProvider inWidget) {
                 mData = inData;
                 mLastModified = inLastModified;
                 mWidget = inWidget;

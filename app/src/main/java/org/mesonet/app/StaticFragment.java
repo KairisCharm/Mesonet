@@ -1,16 +1,14 @@
 package org.mesonet.app;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 
 
-
-public abstract class StaticFragment extends SherlockFragment
+public abstract class StaticFragment extends Fragment
 {
 	protected boolean mInitialized = false;
     protected boolean mSavedInstanceState = false;

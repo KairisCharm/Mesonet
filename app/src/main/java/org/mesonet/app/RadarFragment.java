@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -33,7 +32,6 @@ public class RadarFragment extends StaticFragment
     private TextView mUpdateTimeText = null;
     private TextView mTimeText = null;
 	private RadarMapView mMapView = null;
-    private ImageView mLegend = null;
 	private Button mPlayPauseBtn = null;
 	private Spinner mLocateSpinner = null;
 	private SeekBar mTransparencySeekBar = null;
@@ -130,7 +128,7 @@ public class RadarFragment extends StaticFragment
             Activate();
 	    }
 
-        mMapView.SetImage();
+        RadarMapView.SetImage();
 	}
 	
 	
@@ -189,7 +187,6 @@ public class RadarFragment extends StaticFragment
         mUpdateTimeText = (TextView)toReturn.findViewById(R.id.radar_update_time);
         mTimeText = (TextView)toReturn.findViewById(R.id.radar_time);
         mMapView = (RadarMapView)toReturn.findViewById(R.id.radar_map);
-        mLegend = (ImageView)toReturn.findViewById(R.id.radar_legend);
         mPlayPauseBtn = (Button)toReturn.findViewById(R.id.radar_play_pause);
         mTransparencyLayout = (RadarTransparencyWindow)toReturn.findViewById(R.id.transparency_layout);
         mTransparencySeekBar = (SeekBar)toReturn.findViewById(R.id.transparency_seekbar);

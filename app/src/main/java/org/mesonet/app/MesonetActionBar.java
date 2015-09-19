@@ -1,17 +1,13 @@
 package org.mesonet.app;
 
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 
 
@@ -61,15 +57,15 @@ public class MesonetActionBar
             sABar.removeAllTabs();
 
         ActionBar.Tab tab = sABar.newTab().setCustomView(R.layout.local_tab_layout).setTag(kLocalTag)
-                .setTabListener(new TabListener<LocalFragment>(MesonetApp.Activity(), kLocalTag, LocalFragment.class));
+                .setTabListener(new TabListener<>(MesonetApp.Activity(), kLocalTag, LocalFragment.class));
         sABar.addTab(tab);
 
         tab = sABar.newTab().setCustomView(R.layout.maps_tab_layout).setTag(kMapsTag)
-                .setTabListener(new TabListener<MapsFragment>(MesonetApp.Activity(), kMapsTag, MapsFragment.class));
+                .setTabListener(new TabListener<>(MesonetApp.Activity(), kMapsTag, MapsFragment.class));
         sABar.addTab(tab);
 
         tab = sABar.newTab().setCustomView(R.layout.radar_tab_layout).setTag(kRadarTag)
-                .setTabListener(new TabListener<RadarFragment>(MesonetApp.Activity(), kRadarTag, RadarFragment.class));
+                .setTabListener(new TabListener<>(MesonetApp.Activity(), kRadarTag, RadarFragment.class));
         sABar.addTab(tab);
 
         LinearLayout advisoryTabLayout = (LinearLayout) MesonetApp.Activity().getLayoutInflater().inflate(R.layout.advisories_tab_layout, null);
@@ -113,21 +109,21 @@ public class MesonetActionBar
 
 
 
-    private static class TabListener<T extends SherlockFragment> implements ActionBar.TabListener
+    private static class TabListener<T extends Fragment> implements ActionBar.TabListener
     {
-        private SherlockFragment mFragment;
-        private final SherlockFragmentActivity mActivity;
+        private Fragment mFragment;
+        private final FragmentActivity mActivity;
         private final String mTag;
         private final Class<T> mClass;
 
 
 
-        public TabListener(SherlockFragmentActivity inActivity, String inTag, Class<T> inClass)
+        public TabListener(FragmentActivity inActivity, String inTag, Class<T> inClass)
         {
             mActivity = inActivity;
             mTag = inTag;
             mClass = inClass;
-            mFragment = (SherlockFragment) inActivity.getSupportFragmentManager().findFragmentByTag(inTag);
+            mFragment = inActivity.getSupportFragmentManager().findFragmentByTag(inTag);
         }
 
 
@@ -137,7 +133,7 @@ public class MesonetActionBar
         {
             if (mFragment == null)
             {
-                mFragment = (SherlockFragment) SherlockFragment.instantiate(mActivity, mClass.getName());
+                mFragment = Fragment.instantiate(mActivity, mClass.getName());
                 inFragTrans.add(android.R.id.content, mFragment, mTag);
             }
             else

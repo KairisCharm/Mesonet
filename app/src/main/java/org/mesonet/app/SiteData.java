@@ -21,6 +21,7 @@ public class SiteData
 {
 	private static SQLiteDatabase sDatabase = null;	
 	private static Cursor sSitesList = null;
+	private static SiteListDbHelper sDbHelper = null;
 
     public static SiteListDownloader sSiteListDownloader = null;
 
@@ -33,7 +34,7 @@ public class SiteData
 	public static void Initialize()
 	{
         if(!sInitialized) {
-            SiteListDbHelper sDbHelper = new SiteListDbHelper(MesonetApp.Context());
+            sDbHelper = new SiteListDbHelper(MesonetApp.Context());
             sDatabase = sDbHelper.getWritableDatabase();
             sSiteListDownloader = new SiteListDownloader(LastUpdate());
 
@@ -152,6 +153,8 @@ public class SiteData
 	public static void CloseDatabase()
 	{
 		sDatabase.close();
+		sSitesList.close();
+		sDbHelper.close();
 	}
 	
 	

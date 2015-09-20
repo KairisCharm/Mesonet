@@ -99,9 +99,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 	@Override
 	public void onPause()
 	{
-		super.onPause();
-        sLastOrientation = getResources().getConfiguration().orientation;
+		sLastOrientation = getResources().getConfiguration().orientation;
 		DataContainer.StopDownloads();
+		super.onPause();
+	}
+
+
+
+	@Override
+	public void onDestroy()
+	{
+		DataContainer.CleanUp();
+		super.onDestroy();
 	}
 	
 	

@@ -4,32 +4,32 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.PortUnreachableException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.Scanner;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.text.Html;
-
+import android.util.Log;
 
 
 public class MapsData
 {
 	private static MapsListDbHelper sDbHelper = null;
-	private static SQLiteDatabase sDatabase = null;
+	private static SQLiteDatabase sReadableDatabase = null;
+	private static SQLiteDatabase sWritableDatabase = null;
 	
 	private static int sCurrentSection = 0;
 	private static int sActivePage = 0;
@@ -42,6 +42,7 @@ public class MapsData
 	
 	public static void Initialize()
 	{
+		Log.e("MapsData", "Initialize");
 		PopulateProductJSON();
 		
 		sMapsListUpdater.Update(SavedDataManager.GetUrlFile(R.string.maps_url, R.string.maps_filename), SavedDataManager.GetFile(R.string.maps_filename), false, false);
@@ -56,6 +57,7 @@ public class MapsData
 
     public static void Download()
     {
+		Log.e("MapsData", "Download");
         new MapDownloader().execute();
     }
 	
@@ -63,20 +65,30 @@ public class MapsData
 	
 	public static SQLiteDatabase Database()
 	{
-		return sDatabase;
-	}
+		Log.e("MapsData", "Database");
+		return sReadableDatabase;
+}
 	
 	
 	
 	public static void SetSection(int inSection)
 	{
+		Log.e("MapsData", "SetSection");
 		sCurrentSection = inSection;
+	}
+
+
+
+	public static int GetSection()
+	{
+		return sCurrentSection;
 	}
 	
 	
 	
 	public static void SetPage(int inPage)
 	{
+		Log.e("MapsData", "SetPage");
 		sActivePage = inPage;
 	}
 
@@ -84,6 +96,7 @@ public class MapsData
 
 	public static void SetUrl(String inUrl)
 	{
+		Log.e("MapsData", "SetUrl");
 		sCurrentUrl = inUrl;
 	}
 	
@@ -91,6 +104,7 @@ public class MapsData
 	
 	public static int Section()
 	{
+		Log.e("MapsData", "Section");
 		return sCurrentSection;
 	}
 	
@@ -98,6 +112,7 @@ public class MapsData
 	
 	public static int Page()
 	{
+		Log.e("MapsData", "Page");
 		return sActivePage;
 	}
 	
@@ -105,13 +120,25 @@ public class MapsData
 	
 	public static String Url()
 	{
+		Log.e("MapsData", "Url");
 		return sCurrentUrl;
+	}
+
+
+
+	public static void CleanUp()
+	{
+		sDbHelper.close();
+		sReadableDatabase.close();
+		sWritableDatabase.close();
+		MapsListDbHelper.mList.close();
 	}
 	
 	
 	
 	private static void PopulateProductJSON()
 	{
+		Log.e("MapsData", "PopulateProductJSON");
 		try
 		{
 			String result = "";
@@ -141,23 +168,16 @@ public class MapsData
 	
 	public static void SetProductJSON(JSONObject inJSON)
 	{
+		Log.e("MapsData", "SetProductJSON");
 		if (inJSON == null)
 			return;
-		
-		if(sDbHelper == null)
+
+		if(sDbHelper == null) {
 			sDbHelper = new MapsListDbHelper(MesonetApp.Activity());
-		
-		sDatabase = sDbHelper.getReadableDatabase();
-		
-		try
-		{
-			SQLiteDatabase mDatabase = sDbHelper.getWritableDatabase();
-			MapsListDbHelper.Update(mDatabase, inJSON);
+			sReadableDatabase = sDbHelper.getReadableDatabase();
+			sWritableDatabase = sDbHelper.getWritableDatabase();
 		}
-		catch(Exception exception)
-		{
-            exception.printStackTrace();
-		}
+		MapsListDbHelper.Update(sWritableDatabase, inJSON);
 	}
 	
 	
@@ -167,6 +187,7 @@ public class MapsData
 		@Override
 		protected void PostExecute(DownloadTask.ResultParms inResult)
 		{
+			Log.e("MapsData", "MapsListUpdater.PostExecute");
             SavedDataManager.SaveFile(SavedDataManager.GetStringResource(R.string.maps_filename), inResult.mData, inResult.mLastModified);
 
             try {
@@ -212,6 +233,8 @@ public class MapsData
 					"time INTEGER," +
 					"last_check INTEGER" +
 				");";
+
+		private static Cursor mList = null;
 		
 		
 
@@ -234,46 +257,47 @@ public class MapsData
 		{
 			inDb.beginTransaction();
 
-			if (inOldVersion == 1 && inNewVersion == DB_VERSION) 
-			{
-				inDb.execSQL("DROP TABLE IF EXISTS " + MOD_TIME_TABLE);
-				inDb.execSQL("DROP TABLE IF EXISTS " + SECTIONS_TABLE);
-				inDb.execSQL("DROP TABLE IF EXISTS " + PRODUCTS_TABLE);
+			if(inNewVersion == DB_VERSION) {
+				switch (inOldVersion) {
+					case 1:
+						inDb.execSQL("DROP TABLE IF EXISTS " + MOD_TIME_TABLE);
+						inDb.execSQL("DROP TABLE IF EXISTS " + SECTIONS_TABLE);
+						inDb.execSQL("DROP TABLE IF EXISTS " + PRODUCTS_TABLE);
 
-				inDb.execSQL(SECTIONS_CREATE);
+						inDb.execSQL(SECTIONS_CREATE);
 
-				Update(inDb, sProductJSON);
+						Update(inDb, sProductJSON);
+						break;
+					case 2:
 
-				inDb.setTransactionSuccessful();
-				inDb.endTransaction();
-			}
-			else if (inOldVersion == 2 && inNewVersion == DB_VERSION)
-			{
+						// Read old data from MOD_TIME_TABLE
+						long time = 0;
 
-				// Read old data from MOD_TIME_TABLE
-				long time = 0;
-				Cursor results = inDb.query(MOD_TIME_TABLE, new String[]{"time"}, "file=?", new String[]{"maps"}, null, null, null);
-				if (results.getCount() > 0) 
-				{
-					results.moveToFirst();
-					time = results.getLong(0);
+						if(mList == null)
+							mList = inDb.query(MOD_TIME_TABLE, new String[]{"time"}, "file=?", new String[]{"maps"}, null, null, null);
+
+						if (mList.getCount() > 0) {
+							mList.moveToFirst();
+							time = mList.getLong(0);
+						}
+
+						// Recreate MOD_TIME_TABLE
+						inDb.execSQL("DROP TABLE " + MOD_TIME_TABLE);
+						inDb.execSQL(MOD_TIME_CREATE);
+
+						// Add old data back in to MOD_TIME_TABLE
+						ContentValues values = new ContentValues(3);
+						values.put("file", "maps");
+						values.put("time", time);
+						values.put("last_check", time);
+						inDb.insert(MOD_TIME_TABLE, null, values);
+
+						break;
 				}
-				results.close();
-				
-				// Recreate MOD_TIME_TABLE
-				inDb.execSQL("DROP TABLE " + MOD_TIME_TABLE);
-				inDb.execSQL(MOD_TIME_CREATE);
-				
-				// Add old data back in to MOD_TIME_TABLE
-				ContentValues values = new ContentValues(3);
-				values.put("file", "maps");
-				values.put("time", time);
-				values.put("last_check", time);
-				inDb.insert(MOD_TIME_TABLE, null, values);
-
-				inDb.setTransactionSuccessful();
-				inDb.endTransaction();
 			}
+
+			inDb.setTransactionSuccessful();
+			inDb.endTransaction();
 		}
 		
 		
@@ -346,9 +370,9 @@ public class MapsData
 				inDb.setTransactionSuccessful();
 				MapsFragment.UpdateList(inDb);
 			}
-			catch (Exception exception)
+			catch (JSONException e)
 			{
-				exception.printStackTrace();
+				e.printStackTrace();
 			}
             finally
             {

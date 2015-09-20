@@ -50,6 +50,15 @@ public class AdvisoryData
 
         UpdateAdvisoriesUI();
 	}
+
+
+
+	public static void CleanUp()
+	{
+		StopDownload();
+		sDatabase.close();
+		sDbHelper.close();
+	}
 	
 	
 	
@@ -316,7 +325,7 @@ public class AdvisoryData
 
 
 		
-		public void Update(SQLiteDatabase inDb, JSONArray inJson, Date inUpdated)
+		public synchronized void Update(SQLiteDatabase inDb, JSONArray inJson, Date inUpdated)
 		{
             inDb.beginTransaction();
 

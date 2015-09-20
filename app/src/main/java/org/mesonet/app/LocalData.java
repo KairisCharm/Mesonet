@@ -59,7 +59,7 @@ public class LocalData
 
     public static void ClearData()
     {
-
+		SiteData.CloseDatabase();
     }
 
 

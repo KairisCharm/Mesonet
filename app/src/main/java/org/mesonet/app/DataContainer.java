@@ -21,4 +21,14 @@ public class DataContainer
 		RadarData.StopDownload();
 		AdvisoryData.StopDownload();
 	}
+
+
+
+	public static void CleanUp()
+	{
+		LocalData.ClearData();
+		MapsData.CleanUp();
+		RadarData.ClearImages();
+		AdvisoryData.CleanUp();
+	}
 }

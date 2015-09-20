@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +34,16 @@ public class MapsFragment extends StaticFragment {
     private Button mShareButton;
     private static ProgressDialog sProgDialog = null;
 
+    private static Cursor sMapSectionList = null;
+    private static Cursor sMapList = null;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.e("MapsFragment", "onCreate");
+
 
         setHasOptionsMenu(false);
     }
@@ -45,6 +51,7 @@ public class MapsFragment extends StaticFragment {
 
     @Override
     public View onCreateView(LayoutInflater inInflater, ViewGroup inContainer, Bundle inSavedInstanceState) {
+        Log.e("MapsFragment", "onCreateView");
         return Inflate(inInflater, inContainer);
     }
 
@@ -52,6 +59,8 @@ public class MapsFragment extends StaticFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        Log.e("MapsFragment", "onResume");
 
         // Create custom view for action bar
         InitActionBar(0);
@@ -94,8 +103,21 @@ public class MapsFragment extends StaticFragment {
 
 
 
+    @Override
+    public void onDestroy()
+    {
+        sMapSectionList.close();
+
+        if(sMapList != null)
+            sMapList.close();
+    }
+
+
+
+
     protected View Inflate(LayoutInflater inInflater, ViewGroup inView)
     {
+        Log.e("MapsFragment", "Inflate");
         View toReturn = inInflater.inflate(R.layout.maps_fragment_layout, inView, false);
 
         mMapsList = (ListView)toReturn.findViewById(R.id.maps_list);
@@ -139,6 +161,7 @@ public class MapsFragment extends StaticFragment {
 	
 	private static boolean Activated()
 	{
+        Log.e("MapsFragment", "Activated");
 		return (This() != null) && This().IsActivated();
 	}
 	
@@ -146,6 +169,7 @@ public class MapsFragment extends StaticFragment {
 	
 	private static MapsFragment This()
 	{
+        Log.e("MapsFragment", "This");
 		return MainActivity.MapsFragment();
 	}
 
@@ -154,6 +178,7 @@ public class MapsFragment extends StaticFragment {
     @Override
     public View InitActionBar(int inLayoutId)
     {
+        Log.e("MapsFragment", "InitActionBar");
         View actionBarView = super.InitActionBar(R.layout.maps_action_bar_layout);
 
         TextView actionBarText = (TextView)actionBarView.findViewById(R.id.action_bar_text);
@@ -171,12 +196,15 @@ public class MapsFragment extends StaticFragment {
 	
 	public static void UpdateList(SQLiteDatabase inDatabase)
 	{
+        Log.e("MapsFragment", "UpdateList");
 		if(!Activated())
 			return;
-		
-	    Cursor mapCursor = inDatabase.query("sections", new String[]{"_id", "title", "sections"}, null, null, null, null, null);
-        SimpleCursorAdapter mapsListAdapter = new SimpleCursorAdapter(MesonetApp.Activity(), R.layout.map_category_list_item_layout, mapCursor, new String[]{"title"}, new int[]{R.id.maps_category_title}, 0);
-        
+
+        if(sMapSectionList == null)
+	        sMapSectionList = inDatabase.query("sections", new String[]{"_id", "title", "sections"}, null, null, null, null, null);
+
+        SimpleCursorAdapter mapsListAdapter = new SimpleCursorAdapter(MesonetApp.Activity(), R.layout.map_category_list_item_layout, sMapSectionList, new String[]{"title"}, new int[]{R.id.maps_category_title}, 0);
+
         This().mMapsList.setAdapter(mapsListAdapter);
     }
 	
@@ -184,6 +212,7 @@ public class MapsFragment extends StaticFragment {
 	
 	public static boolean BackToList()
 	{
+        Log.e("MapsFragment", "BackToList");
 		if(!Activated())
 			return false;
 		
@@ -212,28 +241,33 @@ public class MapsFragment extends StaticFragment {
 
 	
 	
-	public static void DisplaySection(int inSectionNumber, SQLiteDatabase inDatabase)
+	public static synchronized void DisplaySection(int inSectionNumber, SQLiteDatabase inDatabase)
 	{
+        Log.e("MapsFragment", "DisplaySection");
 		if(!Activated())
 			return;
-		
-		Cursor subcatCursor = inDatabase.query("products", new String[]{"_id", "title", "product", "section", "url"}, "section=" + Integer.toString(inSectionNumber), null, null, null, null);
-		sSubcatListAdapter = new SimpleCursorAdapter(MesonetApp.Activity(), R.layout.maps_list_item_layout, subcatCursor, new String[]{"product", "title", "url"}, new int[]{R.id.maps_list_title, R.id.maps_list_separator}, 0);
-        
+
+        if(inSectionNumber != MapsData.GetSection() || sMapList == null) {
+            if (sMapList != null)
+                sMapList.close();
+            sMapList = inDatabase.query("products", new String[]{"_id", "title", "product", "section", "url"}, "section=" + Integer.toString(inSectionNumber), null, null, null, null);
+            sSubcatListAdapter = new SimpleCursorAdapter(MesonetApp.Activity(), R.layout.maps_list_item_layout, sMapList, new String[]{"product", "title", "url"}, new int[]{R.id.maps_list_title, R.id.maps_list_separator}, 0);
+        }
+
         sSubcatListAdapter.setViewBinder(new DataBinder());
         This().mSubcatList.setAdapter(sSubcatListAdapter);
         
         This().mMapsList.setVisibility(View.GONE);
         This().mSubcatList.setVisibility(View.VISIBLE);
-        
+
         MapsData.SetSection(inSectionNumber);
-        subcatCursor.close();
 	}
 	
 	
 	
 	public static void DisplayMap(String inUrl)
 	{
+        Log.e("MapsFragment", "DisplayMap");
 		if(!Activated())
 			return;
 		
@@ -248,6 +282,7 @@ public class MapsFragment extends StaticFragment {
 	
 	public static void ShareMap()
 	{
+        Log.e("MapsFragment", "ShareMap");
 		if(!Activated())
 			return;
 
@@ -269,6 +304,7 @@ public class MapsFragment extends StaticFragment {
 
     public static void FinishShare(File inFile)
     {
+        Log.e("MapsFragment", "FinishShare");
         if(inFile != null)
         {
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -289,6 +325,7 @@ public class MapsFragment extends StaticFragment {
 		@Override
 		public boolean setViewValue(View inView, Cursor inCursor, int inColumnIndex)
 		{
+            Log.e("MapsFragment", "DataBinder.setViewValue");
 			TextView textView = (TextView) inView;
 			
 			String textRepresentation = inCursor.getString(inColumnIndex);

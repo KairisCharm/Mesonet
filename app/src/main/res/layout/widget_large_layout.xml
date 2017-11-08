@@ -119,13 +119,14 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/widget_divider"
-            android:contentDescription="@string/empty_text"/>
+            android:contentDescription="@string/divider"/>
         
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="4dp"
+			android:layout_marginStart="4dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:orientation="vertical"

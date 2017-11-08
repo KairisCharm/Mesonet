@@ -13,8 +13,9 @@
         android:layout_height="36dp"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
         android:src="@drawable/ic_launcher"
-        android:contentDescription="@string/empty_text"/>
+        android:contentDescription="@string/mesonet_icon"/>
     
     <TextView
         android:id="@+id/widget_place"
@@ -22,19 +23,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_marginLeft="6dp"
+		android:layout_marginStart="6dp"
         android:layout_toRightOf="@id/widget_image"
+		android:layout_toEndOf="@id/widget_image"
         android:text="@string/empty_field"
         android:textSize="22sp"
         android:textColor="@color/widget_text_field"/>
 	    
-    <Button
+    <ImageButton
         android:id="@+id/widget_update"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentRight="true"
+		android:layout_alignParentEnd="true"
         android:layout_marginTop="4dp"
         android:layout_marginRight="4dp"
-        android:background="@drawable/ic_action_refresh"/>
+		android:layout_marginEnd="4dp"
+        android:src="@drawable/ic_refresh_white_18dp"/>
    
     <LinearLayout
 	    android:layout_width="match_parent"
@@ -80,7 +85,9 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="4dp"
+				android:layout_marginStart="4dp"
 		        android:layout_toRightOf="@id/widget_feelslikeheading"
+				android:layout_toEndOf="@id/widget_feelslikeheading"
 		        android:text="@string/empty_temp"
 		        android:textSize="16dp"
 		        android:textStyle="bold"
@@ -99,8 +106,10 @@
 		        android:id="@+id/widget_wind"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+				android:layout_marginStart="4dp"
 		        android:layout_marginLeft="4dp"
 		        android:layout_alignTop="@id/widget_windheading"
+				android:layout_toEndOf="@id/widget_windheading"
 		        android:layout_toRightOf="@id/widget_windheading"
 		        android:text="@string/empty_field"
 		        android:textSize="16dp"
@@ -122,8 +131,10 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="4dp"
+				android:layout_marginStart="4dp"
 		        android:layout_alignTop="@id/widget_timeheading"
 		        android:layout_toRightOf="@id/widget_timeheading"
+				android:layout_toEndOf="@id/widget_timeheading"
 		        android:text="@string/empty_field"
 		        android:textSize="13dp"
 		        android:textColor="@color/widget_text_field"/>

@@ -9,8 +9,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -30,6 +33,8 @@ public class LocalFragment extends StaticFragment
 	private WebView mMeteoPage = null;
 	private CurrentConditionsControls mCurrCondControls = null;
 	private ForecastControls mForecastControls = null;
+	private ImageButton mLocateButton = null;
+	private Toolbar mToolbar = null;
 
 	private Spinner mLocateSpinner = null;
 	private ViewPager mViewPager = null;
@@ -42,7 +47,7 @@ public class LocalFragment extends StaticFragment
 
 
 
-    @Override public void onResume(){super.onResume();LocalData.StartDownload(false);}
+    @Override public void onResume(){super.onResume(); LocalData.StartDownload(false);}
     @Override public void onPause(){LocalData.StopDownload();super.onPause();}
 
 
@@ -51,6 +56,8 @@ public class LocalFragment extends StaticFragment
     public void onCreate(Bundle inSavedInstanceState)
     {
         super.onCreate(inSavedInstanceState);
+
+		MainActivity.SetLocalFragment(this);
 
         SiteData.Initialize();
         LocalData.Initialize();
@@ -66,41 +73,49 @@ public class LocalFragment extends StaticFragment
 
 
 
-    @Override
-    public View InitActionBar(int inDummy)
+	@Override
+	public void onConfigurationChanged(Configuration inNewConfiguration)
+	{
+		super.onConfigurationChanged(inNewConfiguration);
+		View newView = Inflate(MesonetApp.Activity().getLayoutInflater(), null, inNewConfiguration );
+		ViewGroup rootView = (ViewGroup) getView();
+		rootView.removeAllViews();
+		rootView.addView(newView);
+
+		rootView.invalidate();
+	}
+
+
+
+    private void InitActionBar(Toolbar inToolbar)
     {
         mActionBarMode = kNonSelectMode;
-        View actionBarView = super.InitActionBar(R.layout.local_and_radar_action_bar_layout);
 
-        mLocateSpinner = (Spinner)actionBarView.findViewById(R.id.locate_spinner);
+        mLocateSpinner = (Spinner)inToolbar.findViewById(R.id.locate_spinner);
 
-        Button locateButton = (Button)actionBarView.findViewById(R.id.locate_button);
+        mLocateButton = (ImageButton)inToolbar.findViewById(R.id.locate_button);
 
         if (mLocateSpinner.getAdapter() == null && SiteData.SitesList() != null)
             UpdateList();
 
-        mLocateSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> inParentView, View inSelectedItemView, int inPosition, long inId)
-            {
-                if(mActionBarMode != kNonSelectMode) {
-                    SiteData.SetPosition(inPosition);
-                    SetSite(SiteData.Stid());
-                }
+        mLocateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> inParentView, View inSelectedItemView, int inPosition, long inId) {
+				if (mActionBarMode != kNonSelectMode) {
+					SiteData.SetPosition(inPosition);
+					SetSite(SiteData.Stid());
+				}
 
-                mActionBarMode = kSelectMode;
-            }
+				mActionBarMode = kSelectMode;
+			}
 
 
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
 
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0)
-            {
-            }
-        });
-
-        locateButton.setOnClickListener(new View.OnClickListener()
+        mLocateButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -110,8 +125,39 @@ public class LocalFragment extends StaticFragment
             }
         });
 
-        return null;
+		if(LocationManager.IsConnected())
+			LocationConnected();
+
+		mToolbar.inflateMenu(R.menu.main_menu);
+
+		mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem inItem) {
+				MainActivity.SelectMenuItem(inItem);
+				return true;
+			}
+		});
     }
+
+
+
+	public static void LocationConnected()
+	{
+		if(This().mLocateButton != null) {
+			This().mLocateButton.setEnabled(true);
+			This().mLocateButton.setImageResource(R.drawable.ic_gps_fixed_grey_36dp);
+		}
+	}
+
+
+
+	public static void LocationDisconnected()
+	{
+		if(This().mLocateButton != null) {
+			This().mLocateButton.setEnabled(false);
+			This().mLocateButton.setImageResource(R.drawable.ic_gps_off_grey_36dp);
+		}
+	}
 
 
 
@@ -132,13 +178,13 @@ public class LocalFragment extends StaticFragment
         switch(inConfiguration.orientation)
         {
             case Configuration.ORIENTATION_PORTRAIT:
-                mViewPager = (ViewPager)toReturn.findViewById(R.id.local_vertviewpager);
+                mViewPager = (ViewPager)toReturn.findViewById(R.id.localviewpager);
                 mViewPager.setOffscreenPageLimit(4);
                 mViewPager.setAdapter(new LocalVertPageAdapter());
                 break;
 
             case Configuration.ORIENTATION_LANDSCAPE:
-                mViewPager = (ViewPager)toReturn.findViewById(R.id.local_horzviewpager);
+                mViewPager = (ViewPager)toReturn.findViewById(R.id.localviewpager);
                 mViewPager.setOffscreenPageLimit(2);
                 mViewPager.setAdapter(new LocalHorzPageAdapter());
                 break;
@@ -152,6 +198,10 @@ public class LocalFragment extends StaticFragment
             currCondLayout.addView(mCurrCondControls.GenerateLayout());
 
         SetTextsAndImages();
+
+		mToolbar = (Toolbar)toReturn.findViewById(R.id.toolBar);
+
+		InitActionBar(mToolbar);
 
         return toReturn;
     }
@@ -176,7 +226,7 @@ public class LocalFragment extends StaticFragment
 	{
 		if(!Activated())
 			return;
-		
+
 		This().mCurrCondControls.SetTexts(CurrentConditions.Time(), CurrentConditions.AirTemp(), CurrentConditions.FeelsLike(), CurrentConditions.Dewpoint(), CurrentConditions.Wind(), CurrentConditions.Rain24Hr(), CurrentConditions.Humidity(), CurrentConditions.Gusts(), CurrentConditions.Pressure());
 
         if(CurrentConditions.MeteoUrl() != null && This().mMeteoPage.getUrl() != null && This().mMeteoPage.getUrl().compareTo(CurrentConditions.MeteoUrl()) != 0)
@@ -284,9 +334,11 @@ public class LocalFragment extends StaticFragment
 	{
 		if(!Activated())
 			return;
-		
-		This().mCurrCondControls.ClearFields();
-		This().mForecastControls.ClearFields();
+		if(This().mCurrCondControls != null)
+			This().mCurrCondControls.ClearFields();
+
+		if(This().mForecastControls != null)
+			This().mForecastControls.ClearFields();
 	}
 	
 	
@@ -645,7 +697,7 @@ public class LocalFragment extends StaticFragment
 					if(inData.mWindMag1.compareTo(inData.mWindMag2) != 0)
 						magnitude += "-" + inData.mWindMag2;
 					
-					if(MainMenu.GetUnitSystem() == MainMenu.UnitSystem.kMetric)
+					if(DataContainer.GetUnitSystem() == DataContainer.UnitSystem.kMetric)
 					{
 						units = resources.getString(R.string.wind_mps);
 						

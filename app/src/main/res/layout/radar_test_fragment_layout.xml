@@ -19,16 +19,18 @@
 	    android:layout_marginRight="-3dp"
 	    android:adjustViewBounds="true"
         android:src="@drawable/map_legend"
-        android:contentDescription="@string/empty_text"/>
+        android:contentDescription="@string/radar_legend_description"/>
     
     <Button
         android:id="@+id/radar_play_pause"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_above="@id/radar_legend"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/radar_play"
         android:onClick="RadarPlayPauseToggle"/>
     

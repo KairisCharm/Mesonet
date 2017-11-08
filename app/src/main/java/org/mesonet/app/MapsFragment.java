@@ -3,6 +3,7 @@ package org.mesonet.app;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -10,15 +11,18 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -31,7 +35,9 @@ public class MapsFragment extends StaticFragment {
     private ListView mMapsList;
     private ListView mSubcatList;
     private WebView mMapDisplay;
-    private Button mShareButton;
+    private ImageButton mShareButton;
+    private Toolbar mToolbar;
+    private RelativeLayout mContent;
     private static ProgressDialog sProgDialog = null;
 
     private static Cursor sMapSectionList = null;
@@ -42,28 +48,61 @@ public class MapsFragment extends StaticFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.e("MapsFragment", "onCreate");
-
-
         setHasOptionsMenu(false);
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inInflater, ViewGroup inContainer, Bundle inSavedInstanceState) {
-        Log.e("MapsFragment", "onCreateView");
+        //View result =
+        //ArrangeWithTabs(getResources().getConfiguration());
         return Inflate(inInflater, inContainer);
     }
+
+
+
+    @Override
+    public void onConfigurationChanged(Configuration inNewConfiguration)
+    {
+        super.onConfigurationChanged(inNewConfiguration);
+        ArrangeWithTabs();
+    }
+
+
+
+    public void ResizeToolbar()
+    {
+        mToolbar.getLayoutParams().height = MainActivity.GetToolbarHeight();
+        mToolbar.requestLayout();
+
+        ArrangeWithTabs();
+    }
+
+
+
+    private void ArrangeWithTabs()
+    {
+        switch (getResources().getConfiguration().orientation)
+        {
+            case Configuration.ORIENTATION_PORTRAIT:
+                ((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, MainActivity.GetToolbarHeight(), 0, 0);
+                if(getView() != null)
+                    getView().requestLayout();
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                ((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, 0, 0, 0);
+                if(getView() != null)
+                    getView().requestLayout();
+                break;
+        }
+    }
+
 
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.e("MapsFragment", "onResume");
-
         // Create custom view for action bar
-        InitActionBar(0);
 
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +138,8 @@ public class MapsFragment extends StaticFragment {
 
                 break;
         }
+
+        //MesonetActionBar.Refresh();
     }
 
 
@@ -110,6 +151,8 @@ public class MapsFragment extends StaticFragment {
 
         if(sMapList != null)
             sMapList.close();
+
+        super.onDestroy();
     }
 
 
@@ -117,12 +160,13 @@ public class MapsFragment extends StaticFragment {
 
     protected View Inflate(LayoutInflater inInflater, ViewGroup inView)
     {
-        Log.e("MapsFragment", "Inflate");
         View toReturn = inInflater.inflate(R.layout.maps_fragment_layout, inView, false);
 
         mMapsList = (ListView)toReturn.findViewById(R.id.maps_list);
         mSubcatList = (ListView)toReturn.findViewById(R.id.maps_subcat_list);
         mMapDisplay = (WebView)toReturn.findViewById(R.id.maps_display);
+        mToolbar = (Toolbar)toReturn.findViewById(R.id.toolBar);
+        mContent = (RelativeLayout)toReturn.findViewById(R.id.content);
 
         mMapDisplay.getSettings().setUserAgentString(MesonetApp.UserAgentString());
         mMapDisplay.getSettings().setBuiltInZoomControls(true);
@@ -154,6 +198,8 @@ public class MapsFragment extends StaticFragment {
             }
         });
 
+        InitActionBar((Toolbar)toReturn.findViewById(R.id.toolBar));
+
         return toReturn;
     }
 	
@@ -161,7 +207,6 @@ public class MapsFragment extends StaticFragment {
 	
 	private static boolean Activated()
 	{
-        Log.e("MapsFragment", "Activated");
 		return (This() != null) && This().IsActivated();
 	}
 	
@@ -169,38 +214,41 @@ public class MapsFragment extends StaticFragment {
 	
 	private static MapsFragment This()
 	{
-        Log.e("MapsFragment", "This");
 		return MainActivity.MapsFragment();
 	}
 
 
 
-    @Override
-    public View InitActionBar(int inLayoutId)
+    //@Override
+    public void InitActionBar(Toolbar inToolbar)
     {
-        Log.e("MapsFragment", "InitActionBar");
-        View actionBarView = super.InitActionBar(R.layout.maps_action_bar_layout);
-
-        TextView actionBarText = (TextView)actionBarView.findViewById(R.id.action_bar_text);
+        TextView actionBarText = (TextView)inToolbar.findViewById(R.id.action_bar_text);
         actionBarText.setText("Maps");
 
-        mShareButton = (Button)actionBarView.findViewById(R.id.action_bar_share_button);
+        mShareButton = (ImageButton)inToolbar.findViewById(R.id.action_bar_share_button);
 
         if (mMapDisplay.getVisibility() == View.VISIBLE)
             mShareButton.setVisibility(View.VISIBLE);
 
-        return null;
+        inToolbar.inflateMenu(R.menu.main_menu);
+
+        inToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem inItem) {
+                MainActivity.SelectMenuItem(inItem);
+                return true;
+            }
+        });
     }
 	
 	
 	
 	public static void UpdateList(SQLiteDatabase inDatabase)
 	{
-        Log.e("MapsFragment", "UpdateList");
 		if(!Activated())
 			return;
 
-        if(sMapSectionList == null)
+        if(sMapSectionList == null && inDatabase != null)
 	        sMapSectionList = inDatabase.query("sections", new String[]{"_id", "title", "sections"}, null, null, null, null, null);
 
         SimpleCursorAdapter mapsListAdapter = new SimpleCursorAdapter(MesonetApp.Activity(), R.layout.map_category_list_item_layout, sMapSectionList, new String[]{"title"}, new int[]{R.id.maps_category_title}, 0);
@@ -212,7 +260,6 @@ public class MapsFragment extends StaticFragment {
 	
 	public static boolean BackToList()
 	{
-        Log.e("MapsFragment", "BackToList");
 		if(!Activated())
 			return false;
 		
@@ -243,7 +290,6 @@ public class MapsFragment extends StaticFragment {
 	
 	public static synchronized void DisplaySection(int inSectionNumber, SQLiteDatabase inDatabase)
 	{
-        Log.e("MapsFragment", "DisplaySection");
 		if(!Activated())
 			return;
 
@@ -267,7 +313,6 @@ public class MapsFragment extends StaticFragment {
 	
 	public static void DisplayMap(String inUrl)
 	{
-        Log.e("MapsFragment", "DisplayMap");
 		if(!Activated())
 			return;
 		
@@ -282,7 +327,6 @@ public class MapsFragment extends StaticFragment {
 	
 	public static void ShareMap()
 	{
-        Log.e("MapsFragment", "ShareMap");
 		if(!Activated())
 			return;
 
@@ -304,7 +348,6 @@ public class MapsFragment extends StaticFragment {
 
     public static void FinishShare(File inFile)
     {
-        Log.e("MapsFragment", "FinishShare");
         if(inFile != null)
         {
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -325,7 +368,6 @@ public class MapsFragment extends StaticFragment {
 		@Override
 		public boolean setViewValue(View inView, Cursor inCursor, int inColumnIndex)
 		{
-            Log.e("MapsFragment", "DataBinder.setViewValue");
 			TextView textView = (TextView) inView;
 			
 			String textRepresentation = inCursor.getString(inColumnIndex);

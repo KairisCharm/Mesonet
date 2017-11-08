@@ -33,4 +33,5 @@
     <color name="widget_forecast_background">#d0404040</color>
     <color name="widget_text_field">#ffffff</color>
     <color name="widget_text_heading">#C0C0C0</color>
+    <color name="menu_button_color">#888888</color>
 </resources>

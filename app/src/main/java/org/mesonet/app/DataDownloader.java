@@ -16,7 +16,8 @@ import java.util.Scanner;
 
 abstract class DataDownloader
 {
-    private DownloadTask mTask = null;
+    private DownloadTask mTask =
+            null;
     private Date mFileDate;
 
 

@@ -13,6 +13,6 @@
          android:maxHeight="40dp"
          android:adjustViewBounds="true"
          android:src="@drawable/radar_selector"
-         android:contentDescription="@string/empty_text"/>
+         android:contentDescription="@string/radar_tab_description"/>
 
 </RelativeLayout>

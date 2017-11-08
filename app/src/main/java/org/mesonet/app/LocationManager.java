@@ -1,150 +1,82 @@
 package org.mesonet.app;
 
-import android.app.PendingIntent;
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.GpsStatus;
+import android.location.LocationListener;
 import android.location.Location;
-import android.os.Looper;
+import android.location.LocationProvider;
+import android.os.Bundle;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderApi;
-import com.google.android.gms.location.LocationAvailability;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import com.google.android.gms.location.LocationServices;
 
 
-public class LocationManager
-{
-    private static LocationRequest sLocationRequest;
-    private static FusedLocationProviderApi sLocationProviderApi;
-    private static GoogleApiClient sLocationClient;
-    private static Location sLastLocation;
+public class LocationManager{
+    private static android.location.LocationManager sLocationManager = (android.location.LocationManager) MesonetApp.Context().getSystemService(Context.LOCATION_SERVICE);
+    private static LocationAvailableListener sListener = new LocationAvailableListener();
 
-    private static Timer sLocationTimer = new Timer();
-
-    public static boolean sConnected = false;
+    private static GoogleApiClient sGoogleApiClient = new GoogleApiClient.Builder(MesonetApp.Context())
+            .addApi(LocationServices.API)
+            .build();
 
 
+    public static void Connect() {
+        sGoogleApiClient.connect();
 
-    public static void Init()
-    {
-        sLocationRequest = LocationRequest.create();
-        sLocationRequest.setPriority(LocationRequest.PRIORITY_LOW_POWER);
-        sLocationRequest.setInterval(90000);
-        sLocationRequest.setFastestInterval(60000);
-
-        sLocationProviderApi = new FusedLocationProviderApi() {
-            @Override
-            public Location getLastLocation(GoogleApiClient googleApiClient) {
-                return null;
-            }
-
-            @Override
-            public LocationAvailability getLocationAvailability(GoogleApiClient googleApiClient) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationListener locationListener) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationListener locationListener, Looper looper) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, LocationCallback locationCallback, Looper looper) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> requestLocationUpdates(GoogleApiClient googleApiClient, LocationRequest locationRequest, PendingIntent pendingIntent) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, LocationListener locationListener) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, PendingIntent pendingIntent) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> removeLocationUpdates(GoogleApiClient googleApiClient, LocationCallback locationCallback) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> setMockMode(GoogleApiClient googleApiClient, boolean b) {
-                return null;
-            }
-
-            @Override
-            public PendingResult<Status> setMockLocation(GoogleApiClient googleApiClient, Location location) {
-                return null;
-            }
-        };
-
-        sLocationTimer.schedule(new LocationTask(), 0, DataContainer.kOneMinute * 5);
+        try {
+            sLocationManager.requestLocationUpdates(android.location.LocationManager.NETWORK_PROVIDER, 0, 0, sListener);
+        }
+        catch(SecurityException ex) {
+            LocalFragment.LocationDisconnected();
+        }
     }
 
 
 
-    public static void SetLocation(Location inLocation)
+    public static boolean IsConnected()
     {
-        sLastLocation = inLocation;
-        Disconnect();
-    }
-
-
-
-    public static void StartUpdating()
-    {
-        sLocationProviderApi.requestLocationUpdates(sLocationClient, sLocationRequest, MesonetApp.Activity());
+        return sGoogleApiClient.isConnected();
     }
 
 
 
     public static Location GetLocation()
     {
-        return sLastLocation;
-    }
-
-
-
-    public static void Connect()
-    {
-        sConnected = false;
-        if(sLocationClient != null && !sLocationClient.isConnected())
-            sLocationClient.connect();
+        return LocationServices.FusedLocationApi.getLastLocation(sGoogleApiClient);
     }
 
 
 
     public static void Disconnect()
     {
-        if(sConnected && sLocationClient != null && sLocationClient.isConnected()) {
-            sLocationProviderApi.removeLocationUpdates(sLocationClient, MesonetApp.Activity());
-            sLocationClient.disconnect();
-        }
+        sGoogleApiClient.disconnect();
     }
 
 
-    private static class LocationTask extends TimerTask
-    {
+
+    private static class LocationAvailableListener implements LocationListener {
+        @Override
+        public void onLocationChanged(Location location) {
+
+        }
 
         @Override
-        public void run() {
-            Connect();
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+            LocalFragment.LocationConnected();
+            RadarFragment.LocationConnected();
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            LocalFragment.LocationDisconnected();
+            RadarFragment.LocationDisconnected();
         }
     }
 }

@@ -3,6 +3,7 @@ package org.mesonet.app;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -24,7 +25,7 @@ public abstract class StaticFragment extends Fragment
     {
         super.onStart();
 
-        InitActionBar(0);
+        //InitActionBar(0);
     }
 
 
@@ -40,19 +41,6 @@ public abstract class StaticFragment extends Fragment
 	{
 		return mInitialized;
 	}
-
-
-
-    protected View InitActionBar(int inLayoutId)
-    {
-        LayoutInflater factory = getActivity().getLayoutInflater();
-        View actionBarView = factory.inflate(inLayoutId, null);
-
-        ActionBar aBar = ((MainActivity)getActivity()).getSupportActionBar();
-        aBar.setCustomView(actionBarView);
-
-        return actionBarView;
-    }
 
 
 

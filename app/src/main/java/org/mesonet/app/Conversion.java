@@ -166,7 +166,7 @@ public class Conversion
 		if(!Valid(inConverter.GetValue()))
 			return SavedDataManager.MissingField();
 		
-		if(MainMenu.GetUnitSystem() == MainMenu.UnitSystem.kImperial)
+		if(DataContainer.GetUnitSystem() == DataContainer.UnitSystem.kImperial)
 		{
 			float roundDec = (float)Math.pow(10, inRoundDecs);
 

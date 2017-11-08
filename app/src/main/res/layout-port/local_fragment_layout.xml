@@ -1,12 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+	<include android:id="@+id/toolBar" layout="@layout/local_and_radar_action_bar_layout"/>
+
+	<!--Since tabs are uniform across all fragments, they are handled in main_activity.xml-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="100"
+		android:layout_below="@id/toolBar"
+		android:layout_marginTop="?android:attr/actionBarSize"
         android:orientation="vertical">
 	    <LinearLayout
 	        android:orientation="vertical"
@@ -19,7 +25,7 @@
 	        android:background="@color/meso_background"/>
 	    
 	    <android.support.v4.view.ViewPager
-			android:id="@+id/local_vertviewpager"
+			android:id="@+id/localviewpager"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="45"/>
@@ -28,6 +34,8 @@
 	
     <WebView
 	    android:id="@+id/meteogram"
+		android:layout_below="@id/toolBar"
+		android:layout_marginTop="?android:attr/actionBarSize"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:visibility="invisible"/>

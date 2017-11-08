@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
     android:orientation="horizontal">
      
     <ImageView
@@ -11,22 +11,25 @@
         android:layout_marginTop="@dimen/tab_image_margin"
         android:layout_marginLeft="5.375dp"
         android:layout_marginRight="-5.375dp"
+        android:layout_marginStart="5.375dp"
+        android:layout_marginEnd="5.375dp"
         android:layout_marginBottom="@dimen/tab_image_margin"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:src="@drawable/advisories_selector"
-        android:contentDescription="@string/empty_text"/>
+        android:contentDescription="@string/advisories_tab_description"/>
     
     <ImageView
         android:id="@+id/advisory_count_image"
         android:layout_width="21.5dp"
         android:layout_height="21.5dp"
     	android:layout_marginTop="@dimen/advisory_count_margin"
-    	android:layout_marginLeft="-10.75dp"
+    	android:layout_marginLeft="-14dp"
+        android:layout_marginStart="-14dp"
     	android:visibility="invisible"
         android:scaleType="fitXY"
         android:src="@drawable/advisory_count"
-        android:contentDescription="@string/empty_text"/>
+        android:contentDescription="@string/advisories_tab_count"/>
        
     <TextView
         android:id="@+id/advisory_tab_count"
@@ -34,6 +37,7 @@
         android:layout_height="21.5dp"
     	android:layout_marginTop="@dimen/advisory_count_margin"
     	android:layout_marginLeft="-22dp"
+        android:layout_marginStart="-22dp"
         android:textAlignment="center"
         android:visibility="invisible"
         android:gravity="center"

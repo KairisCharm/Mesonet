@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Mesotheme" parent="Theme.AppCompat">
+    <style name="Mesotheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_mesotheme</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Mesotheme</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Mesotheme</item>

@@ -2,7 +2,11 @@ package org.mesonet.app;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.support.v7.app.ActionBar;
+import android.support.v7.internal.view.menu.MenuBuilder;
+import android.support.v7.widget.ActionMenuPresenter;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,37 +25,51 @@ public class MainMenu
 
     final static String kUnits = "units";
 
+    private static MainMenu sMainMenu = new MainMenu();
     private MenuItem mTransparencyMenuItem;
 
 
 
-    public static void GenerateMenu(Menu inMenu)
+    /*public static void GenerateMenu(Context inContext, Toolbar inToolbar)
     {
-        inMenu.add(SavedDataManager.GetStringResource(R.string.settings_english));
-        inMenu.add(SavedDataManager.GetStringResource(R.string.settings_metric));
-        This().mTransparencyMenuItem = inMenu.add(SavedDataManager.GetStringResource(R.string.settings_radar_trans));
-        inMenu.add(SavedDataManager.GetStringResource(R.string.settings_ticker));
-        inMenu.add(SavedDataManager.GetStringResource(R.string.settings_contact));
-        inMenu.add(SavedDataManager.GetStringResource(R.string.settings_about));
+        MenuBuilder builder = new MenuBuilder(inContext);
+        builder.add(SavedDataManager.GetStringResource(R.string.settings_english));
+        builder.add(SavedDataManager.GetStringResource(R.string.settings_metric));
+        sMainMenu.mTransparencyMenuItem = builder.add(SavedDataManager.GetStringResource(R.string.settings_radar_trans));
+        builder.add(SavedDataManager.GetStringResource(R.string.settings_ticker));
+        builder.add(SavedDataManager.GetStringResource(R.string.settings_contact));
+        builder.add(SavedDataManager.GetStringResource(R.string.settings_about));
 
-        This().mTransparencyMenuItem.setVisible(false);
+        ActionMenuPresenter presenter = new ActionMenuPresenter(inContext);
 
-        if(MesonetActionBar.GetSelectedTab().compareTo(MesonetActionBar.kRadarTag) == 0)
-            This().mTransparencyMenuItem.setVisible(true);
+        inToolbar.setMenu(builder, presenter);
+
+        inToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem inItem) {
+                MainMenu.SelectMenuItem(inItem);
+                return true;
+            }
+        });
+
+        sMainMenu.mTransparencyMenuItem.setVisible(false);
+
+        //if(MesonetActionBar.GetSelectedTab().compareTo(MesonetActionBar.kRadarTag) == 0)
+          //  This().mTransparencyMenuItem.setVisible(true);
     }
 
 
 
-    public static void CheckRadarTransparencyItem(ActionBar.Tab inTab)
+    /*public static void CheckRadarTransparencyItem(ActionBar.Tab inTab)
     {
-        if(This().mTransparencyMenuItem != null)
+        if(sMainMenu.mTransparencyMenuItem != null)
         {
-            This().mTransparencyMenuItem.setVisible(false);
+            sMainMenu.mTransparencyMenuItem.setVisible(false);
 
-            if(((String)inTab.getTag()).compareTo(MesonetActionBar.kRadarTag) == 0)
-                This().mTransparencyMenuItem.setVisible(true);
+           // if(((String)inTab.getTag()).compareTo(MesonetActionBar.kRadarTag) == 0)
+             //   This().mTransparencyMenuItem.setVisible(true);
         }
-    }
+    }*
 
 
 
@@ -151,12 +169,5 @@ public class MainMenu
 
             PopupManager.Popup(popupView, R.string.settings_about);
         }
-    }
-
-
-
-    private static MainMenu This()
-    {
-        return MainActivity.Menu();
-    }
+    }*/
 }

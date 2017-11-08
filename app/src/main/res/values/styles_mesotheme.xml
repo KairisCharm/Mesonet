@@ -19,7 +19,9 @@
 
 <resources>
 
-    <style name="Mesotheme" parent="Base.Theme.AppCompat">
+    <style name="Mesotheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="background">@android:color/black</item>
+        <item name="android:listViewStyle">@style/ListView.Mesotheme</item>
         <item name="actionBarItemBackground">@drawable/selectable_background_mesotheme</item>
         <item name="popupMenuStyle">@style/PopupMenu.Mesotheme</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Mesotheme</item>
@@ -32,7 +34,7 @@
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Mesotheme</item>
         <item name="android:spinnerStyle">@style/SpinnerStyle.Mesotheme</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItem.Mesotheme</item>
-
+        <item name="android:alertDialogStyle">@style/AlertDialog.Mesotheme</item>
     </style>
 
     <style name="ActionBar.Solid.Mesotheme" parent="Widget.AppCompat.ActionBar.Solid">
@@ -48,8 +50,22 @@
         <item name="android:progressBarStyle">@style/ProgressBar.Mesotheme</item>
     </style>
 	
-    <style name="PopupMenu.Mesotheme" parent="Widget.AppCompat.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mesotheme</item>	
+    <style name="Popup.Mesotheme" parent="Widget.AppCompat.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mesotheme</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="android:buttonStyle">@style/PopupMenu.Button.Mesotheme</item>
+    </style>
+
+    <style name="PopupMenu.Button.Mesotheme" parent="Widget.AppCompat.Button">
+        <item name="android:background">@android:color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AlertDialog.Mesotheme" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
     
     <style name="SpinnerStyle.Mesotheme" parent="Widget.AppCompat.Spinner.DropDown.ActionBar">
@@ -58,6 +74,10 @@
     
     <style name="SpinnerItem.Mesotheme" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">@color/white_text_color</item>
+    </style>
+
+    <style name="ListView.Mesotheme" parent="Widget.AppCompat.ListView">
+        <item name="android:background">@android:color/black</item>
     </style>
 	
     <style name="DropDownListView.Mesotheme" parent="Widget.AppCompat.ListView.DropDown">

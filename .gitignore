@@ -1,4 +1,4 @@
-# Built application files
+c# Built application files
 *.apk
 *.ap_
 
@@ -25,49 +25,13 @@ proguard/
 # Log Files
 *.log
 
-# =========================
-# Operating System Files
-# =========================
+# Android Studio Navigation editor temp files
+.navigation/
 
-# OSX
-# =========================
+*.DS_Store
 
-.DS_Store
-.AppleDouble
-.LSOverride
+# Android Studio captures folder
+captures/
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Windows
-# =========================
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
+.idea/
+*.iml

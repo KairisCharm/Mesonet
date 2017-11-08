@@ -132,17 +132,24 @@ public class AdvisoryData
 	public static void SqlUpdate (String inCsv, Date inDate)
 	{
 		JSONArray json = ParseFile(inCsv);
-		sDbHelper.Update(sDatabase, json, inDate);
+
+		if(sDbHelper != null)
+			sDbHelper.Update(sDatabase, json, inDate);
 	}
 	
 	
 	
 	public static int Count ()
 	{
-		Cursor results = sDatabase.query(AdvisoriesListDbHelper.ADVISORIES_TABLE, new String[]{"_id"}, null, null, null, null, null);
-		int count = results.getCount();
-		results.close();
-		return count;
+		if(sDatabase != null)
+		{
+			Cursor results = sDatabase.query(AdvisoriesListDbHelper.ADVISORIES_TABLE, new String[]{"_id"}, null, null, null, null, null);
+			int count = results.getCount();
+			results.close();
+			return count;
+		}
+
+		return 0;
 	}
 	
 	

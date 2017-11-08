@@ -7,15 +7,22 @@ import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -33,9 +40,15 @@ public class RadarFragment extends StaticFragment
     private TextView mTimeText = null;
 	private RadarMapView mMapView = null;
 	private Button mPlayPauseBtn = null;
+	private ImageView mLegend = null;
 	private Spinner mLocateSpinner = null;
 	private SeekBar mTransparencySeekBar = null;
 	private RadarTransparencyWindow mTransparencyLayout = null;
+	private ImageButton mLocateButton = null;
+	private Toolbar mToolbar = null;
+	private RelativeLayout mContent = null;
+	private Drawable mLegendDrawableVert = null;
+	private Drawable mLegendDrawableHorz = null;
 	
 	private static Timer sRadarLooper = new Timer();
     private static Timer sTrackbarTimer = null;
@@ -72,7 +85,42 @@ public class RadarFragment extends StaticFragment
 	@Override
 	public View onCreateView(LayoutInflater inInflater, ViewGroup inContainer, Bundle inSavedInstanceState)
 	{
+		//View result =
+
+		//ArrangeWithTabs(getResources().getConfiguration());
+
 		return Inflate(inInflater, inContainer);
+	}
+
+
+
+	public void ResizeToolbar()
+	{
+		mToolbar.getLayoutParams().height = MainActivity.GetToolbarHeight();
+		mToolbar.requestLayout();
+
+		ArrangeWithTabs();
+
+		mLegend.setImageDrawable(GetLegend());
+	}
+
+
+
+	private void ArrangeWithTabs()
+	{
+		switch (getResources().getConfiguration().orientation)
+		{
+			case Configuration.ORIENTATION_PORTRAIT:
+				((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, MainActivity.GetToolbarHeight(), 0, 0);
+				if(getView() != null)
+					getView().requestLayout();
+				break;
+			case Configuration.ORIENTATION_LANDSCAPE:
+				((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, 0, 0, 0);
+				if(getView() != null)
+					getView().requestLayout();
+				break;
+		}
 	}
 	
 	
@@ -84,25 +132,23 @@ public class RadarFragment extends StaticFragment
 
 		mTransparencySeekBar.setMax(255);
 		mTransparencySeekBar.setProgress(RadarData.Transparency());
-		mTransparencySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-		{
+		mTransparencySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
-			public void onProgressChanged(SeekBar inBar, int inProgress, boolean inFromUser)
-			{
+			public void onProgressChanged(SeekBar inBar, int inProgress, boolean inFromUser) {
 				RadarData.SetTransparency(inBar.getProgress());
 			}
-			
-			
-			
-			@Override public void onStartTrackingTouch(SeekBar inBar)
-            {
-                sTrackbarTimer.cancel();
-            }
-			@Override public void onStopTrackingTouch(SeekBar inBar)
-            {
-                sTrackbarTimer = new Timer();
-                sTrackbarTimer.schedule(new TrackbarRemover(), 10000);
-            }
+
+
+			@Override
+			public void onStartTrackingTouch(SeekBar inBar) {
+				sTrackbarTimer.cancel();
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar inBar) {
+				sTrackbarTimer = new Timer();
+				sTrackbarTimer.schedule(new TrackbarRemover(), 10000);
+			}
 		});
 	}
 	
@@ -120,8 +166,6 @@ public class RadarFragment extends StaticFragment
 	    {
 		    mMapView.getMap().getUiSettings().setZoomControlsEnabled(false);
 		    mMapView.getMap().getUiSettings().setRotateGesturesEnabled(false);
-
-            InitActionBar(0);
 	
 			mMapView.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(RadarData.GetCurrentData().mLatitude, RadarData.GetCurrentData().mLongitude), 7.0f));
 
@@ -188,18 +232,52 @@ public class RadarFragment extends StaticFragment
         mTimeText = (TextView)toReturn.findViewById(R.id.radar_time);
         mMapView = (RadarMapView)toReturn.findViewById(R.id.radar_map);
         mPlayPauseBtn = (Button)toReturn.findViewById(R.id.radar_play_pause);
+		mLegend = (ImageView)toReturn.findViewById(R.id.radar_legend);
         mTransparencyLayout = (RadarTransparencyWindow)toReturn.findViewById(R.id.transparency_layout);
         mTransparencySeekBar = (SeekBar)toReturn.findViewById(R.id.transparency_seekbar);
+		mToolbar = (Toolbar)toReturn.findViewById(R.id.toolBar);
+		mContent = (RelativeLayout)toReturn.findViewById(R.id.content);
 
         mPlayPauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PlayPauseToggle();
-            }
-        });
+			@Override
+			public void onClick(View v) {
+				PlayPauseToggle();
+			}
+		});
+
+		InitActionBar((Toolbar) toReturn.findViewById(R.id.toolBar));
+
+		GetLegend();
 
         return toReturn;
     }
+
+
+
+	private Drawable GetLegend()
+	{
+		switch (getResources().getConfiguration().orientation)
+		{
+			case Configuration.ORIENTATION_PORTRAIT:
+				if(mLegendDrawableVert == null) {
+					if(Build.VERSION.SDK_INT >= 21)
+						mLegendDrawableVert = getResources().getDrawable(R.drawable.map_legend, getActivity().getTheme());
+					else
+						mLegendDrawableVert = getResources().getDrawable(R.drawable.map_legend);
+				}
+				return mLegendDrawableVert;
+			case Configuration.ORIENTATION_LANDSCAPE:
+				if(mLegendDrawableHorz == null) {
+					if(Build.VERSION.SDK_INT >= 21)
+						mLegendDrawableHorz = getResources().getDrawable(R.drawable.map_legend, getActivity().getTheme());
+					else
+						mLegendDrawableHorz = getResources().getDrawable(R.drawable.map_legend);
+				}
+				return mLegendDrawableHorz;
+		}
+
+		return null;
+	}
 	
 	
 	
@@ -210,55 +288,57 @@ public class RadarFragment extends StaticFragment
 
 
 
-    @Override
-    public View InitActionBar(int inLayoutId)
+    public View InitActionBar(Toolbar inToolbar)
     {
-        View actionBarView = super.InitActionBar(R.layout.local_and_radar_action_bar_layout);
-
-        mLocateSpinner = (Spinner)actionBarView.findViewById(R.id.locate_spinner);
-        Button locateButton = (Button)actionBarView.findViewById(R.id.locate_button);
+        mLocateSpinner = (Spinner)inToolbar.findViewById(R.id.locate_spinner);
+		mLocateButton = (ImageButton)inToolbar.findViewById(R.id.locate_button);
 
         ArrayAdapter<Object> cursorAdapter = RadarData.GetListAdapter();
         cursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         mLocateSpinner.setAdapter(cursorAdapter);
         mLocateSpinner.setSelection(RadarData.GetCityIndex());
-        mLocateSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> inParentView, View inSelectedItemView, int inPosition, long inId)
-            {
-                mTimeText.setText("");
-                mUpdateTimeText.setText("");
+        mLocateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> inParentView, View inSelectedItemView, int inPosition, long inId) {
+				mTimeText.setText("");
+				mUpdateTimeText.setText("");
 
-                if(RadarData.SetLocation((String)(RadarData.GetKeyList().toArray())[inPosition])) {
-                    RadarData.ResetDownloads();
+				if (RadarData.SetLocation((String) (RadarData.GetKeyList().toArray())[inPosition])) {
+					RadarData.ResetDownloads();
 
-                    RefreshMap(RadarData.GetCurrentData());
+					RefreshMap(RadarData.GetCurrentData());
 
-                    SavedDataManager.SaveStringSetting("radar", RadarData.GetCity());
-                }
-            }
+					SavedDataManager.SaveStringSetting("radar", RadarData.GetCity());
+				}
+			}
 
 
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
 
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0)
-            {
-            }
-        });
+        mLocateButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				RadarData.StopDownload();
+				Location location = LocationManager.GetLocation();
 
-        locateButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                RadarData.StopDownload();
-                Location location = LocationManager.GetLocation();
+				if (location != null)
+					mLocateSpinner.setSelection(RadarData.GetNearestRadarLocation(location));
+			}
+		});
 
-                if(location != null)
-                    mLocateSpinner.setSelection(RadarData.GetNearestRadarLocation(location));
-            }
-        });
+		inToolbar.inflateMenu(R.menu.main_menu);
+		inToolbar.getMenu().getItem(2).setVisible(true);
+
+		inToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem inItem) {
+				MainActivity.SelectMenuItem(inItem);
+				return true;
+			}
+		});
 
         return null;
     }
@@ -269,6 +349,26 @@ public class RadarFragment extends StaticFragment
     {
         return mTransparencyLayout.getVisibility() == View.VISIBLE;
     }
+
+
+
+	public static void LocationConnected()
+	{
+		if(This().mLocateButton != null) {
+			This().mLocateButton.setEnabled(true);
+			This().mLocateButton.setImageResource(R.drawable.ic_gps_fixed_grey_36dp);
+		}
+	}
+
+
+
+	public static void LocationDisconnected()
+	{
+		if(This().mLocateButton != null) {
+			This().mLocateButton.setEnabled(false);
+			This().mLocateButton.setImageResource(R.drawable.ic_gps_off_grey_36dp);
+		}
+	}
 	
 	
 	

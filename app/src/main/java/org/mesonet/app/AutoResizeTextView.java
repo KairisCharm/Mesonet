@@ -39,27 +39,10 @@ public class AutoResizeTextView extends TextView
 	private int mLineCount;
 
 
-
-	public AutoResizeTextView(Context inContext)
-	{
-		super(inContext);
-		Initialize();
-	}
-	
-	
 	
 	public AutoResizeTextView(Context inContext, AttributeSet inAttributes)
 	{
 		super(inContext, inAttributes);
-		Initialize();
-        GetLineCountAttribute(inAttributes);
-	}
-	
-	
-	
-	public AutoResizeTextView(Context inContext, AttributeSet inAttributes, int inDefStyle)
-	{
-		super(inContext, inAttributes, inDefStyle);
 		Initialize();
         GetLineCountAttribute(inAttributes);
 	}

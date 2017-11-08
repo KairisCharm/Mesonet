@@ -1,17 +1,22 @@
 package org.mesonet.app;
 
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.Releasable;
 
 
 public class AdvisoriesFragment extends StaticFragment
@@ -19,6 +24,8 @@ public class AdvisoriesFragment extends StaticFragment
 	private ListView mList = null;
 	private ScrollView mAdvisoryDisplay = null;
 	private TextView mAdvisoryText = null;
+	private Toolbar mToolbar = null;
+	private RelativeLayout mContent = null;
 	
 	private static SimpleCursorAdapter sAdvisoryListAdapter = null;
 	
@@ -37,11 +44,49 @@ public class AdvisoriesFragment extends StaticFragment
 	@Override
 	public View onCreateView(LayoutInflater inInflater, ViewGroup inContainer, Bundle inSavedInstanceState)
 	{
-		View toReturn = Inflate(inInflater, inContainer);
+		//View toReturn = Inflate(inInflater, inContainer);
 
-        InitActionBar(0);
+		//ArrangeWithTabs(getResources().getConfiguration());
 
-        return toReturn;
+        return Inflate(inInflater, inContainer);
+	}
+
+
+
+	@Override
+	public void onConfigurationChanged(Configuration inNewConfiguration)
+	{
+		super.onConfigurationChanged(inNewConfiguration);
+		ArrangeWithTabs();
+	}
+
+
+
+	public void ResizeToolbar()
+	{
+		mToolbar.getLayoutParams().height = MainActivity.GetToolbarHeight();
+		mToolbar.requestLayout();
+
+		ArrangeWithTabs();
+	}
+
+
+
+	private void ArrangeWithTabs()
+	{
+		switch (getResources().getConfiguration().orientation)
+		{
+			case Configuration.ORIENTATION_PORTRAIT:
+				((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, MainActivity.GetToolbarHeight(), 0, 0);
+				if(getView() != null)
+					getView().requestLayout();
+				break;
+			case Configuration.ORIENTATION_LANDSCAPE:
+				((ViewGroup.MarginLayoutParams)mContent.getLayoutParams()).setMargins(0, 0, 0, 0);
+				if(getView() != null)
+					getView().requestLayout();
+				break;
+		}
 	}
 	
 	
@@ -50,8 +95,6 @@ public class AdvisoriesFragment extends StaticFragment
 	public void onResume()
 	{
 		super.onResume();
-		
-		InitActionBar(0);
 
         Activate();
 		
@@ -80,6 +123,7 @@ public class AdvisoriesFragment extends StaticFragment
         mList = (ListView)toReturn.findViewById(R.id.advisory_list);
         mAdvisoryDisplay = (ScrollView)toReturn.findViewById(R.id.advisory_display);
         mAdvisoryText = (TextView)toReturn.findViewById(R.id.advisory_text);
+		mContent = (RelativeLayout) toReturn.findViewById(R.id.content);
 
         if(sAdvisoryListAdapter != null)
         {
@@ -115,21 +159,29 @@ public class AdvisoriesFragment extends StaticFragment
             }
         });
 
+		mToolbar = (Toolbar)toReturn.findViewById(R.id.toolBar);
+		InitActionBar(mToolbar);
+
         return toReturn;
     }
 
 
 
-    @Override
-    public View InitActionBar(int inLayoutId)
-    {
-        View actionBarView = super.InitActionBar(R.layout.advisories_action_bar_layout);
+	public void InitActionBar(Toolbar inToolbar)
+	{
+		TextView actionBarText = (TextView)inToolbar.findViewById(R.id.action_bar_text);
+		actionBarText.setText(R.string.advisory_heading);
 
-        TextView actionBarText = (TextView)actionBarView.findViewById(R.id.action_bar_text);
-        actionBarText.setText(R.string.advisory_heading);
+		mToolbar.inflateMenu(R.menu.main_menu);
 
-        return null;
-    }
+		mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem inItem) {
+				MainActivity.SelectMenuItem(inItem);
+				return true;
+			}
+		});
+	}
 	
 	
 	

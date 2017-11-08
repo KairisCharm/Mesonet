@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
+import android.support.v7.internal.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class PopupManager
 
     public static AlertDialog Popup(View inView, int inTitleId)
     {
-        AlertDialog popup = new AlertDialog.Builder(MesonetApp.Activity()).create();
+        AlertDialog popup = new AlertDialog.Builder(new ContextThemeWrapper(MesonetApp.Context(), android.R.style.Theme_Dialog)).create();
 
         popup.setTitle(inTitleId);
         popup.setView(inView);

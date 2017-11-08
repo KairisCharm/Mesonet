@@ -69,7 +69,7 @@
 	        android:adjustViewBounds="true"
 	        android:scaleType="fitStart"
 	        android:onClick="ShowMeteogram"
-	        android:contentDescription="@string/empty_text"
+	        android:contentDescription="@string/meteogram_btn_description"
 	        android:src="@drawable/meteogram_image"
 	        android:background="@null"/>
 	        
@@ -144,7 +144,7 @@
 	        android:adjustViewBounds="true"
 	        android:visibility="invisible"
 	        android:scaleType="fitStart"
-	        android:contentDescription="@string/empty_text"
+	        android:contentDescription="@string/meteogram_btn_description"
 	        android:src="@drawable/meteogram_image"
 	        android:background="@null"/>
 	        

@@ -1,8 +1,7 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <org.mesonet.app.RadarMapView
         android:id="@+id/radar_map"
@@ -14,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000">
+        android:background="@android:color/black">
         <TextView
             android:id="@+id/radar_update_time"
             android:layout_width="wrap_content"
@@ -42,50 +41,52 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"/>
     </RelativeLayout>
-    
+
     <ImageView
         android:id="@+id/radar_legend"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:layout_marginLeft="-3dp"
-	    android:layout_marginRight="-3dp"
-	    android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginRight="-3dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/map_legend"
-        android:contentDescription="@string/empty_text"/>
-    
+        android:contentDescription="@string/radar_legend_description"/>
+
     <Button
         android:id="@+id/radar_play_pause"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_above="@id/radar_legend"
         android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/radar_play"
         android:onClick="RadarPlayPauseToggle"/>
-    
+
     <org.mesonet.app.RadarTransparencyWindow
         android:id="@+id/transparency_layout"
         android:layout_width="match_parent"
-    	android:layout_height="40dp"
-	    android:layout_marginLeft="16dp"
-	    android:layout_marginRight="16dp"
-	    android:layout_marginBottom="12dp"
-	    android:layout_above="@id/radar_legend"
-    	android:layout_toLeftOf="@id/radar_play_pause"
-	    android:background="@android:color/black"
-	    android:visibility="gone">
-    
-	    <SeekBar
-	        android:id="@+id/transparency_seekbar"
-	        android:layout_width="match_parent"
-	        android:layout_height="32dp"
-	        android:layout_marginTop="4dp"
-	        android:layout_marginLeft="8dp"
-	        android:layout_marginRight="8dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@id/radar_legend"
+        android:layout_toLeftOf="@id/radar_play_pause"
+        android:background="@android:color/black"
+        android:visibility="gone">
+
+        <SeekBar
+            android:id="@+id/transparency_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:focusable="true"/>
-    
+
     </org.mesonet.app.RadarTransparencyWindow>
-    
+
 </RelativeLayout>

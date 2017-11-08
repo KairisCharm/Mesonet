@@ -22,7 +22,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.text.Html;
-import android.util.Log;
 
 
 public class MapsData
@@ -42,7 +41,6 @@ public class MapsData
 	
 	public static void Initialize()
 	{
-		Log.e("MapsData", "Initialize");
 		PopulateProductJSON();
 		
 		sMapsListUpdater.Update(SavedDataManager.GetUrlFile(R.string.maps_url, R.string.maps_filename), SavedDataManager.GetFile(R.string.maps_filename), false, false);
@@ -57,7 +55,6 @@ public class MapsData
 
     public static void Download()
     {
-		Log.e("MapsData", "Download");
         new MapDownloader().execute();
     }
 	
@@ -65,7 +62,6 @@ public class MapsData
 	
 	public static SQLiteDatabase Database()
 	{
-		Log.e("MapsData", "Database");
 		return sReadableDatabase;
 }
 	
@@ -73,7 +69,6 @@ public class MapsData
 	
 	public static void SetSection(int inSection)
 	{
-		Log.e("MapsData", "SetSection");
 		sCurrentSection = inSection;
 	}
 
@@ -88,7 +83,6 @@ public class MapsData
 	
 	public static void SetPage(int inPage)
 	{
-		Log.e("MapsData", "SetPage");
 		sActivePage = inPage;
 	}
 
@@ -96,7 +90,6 @@ public class MapsData
 
 	public static void SetUrl(String inUrl)
 	{
-		Log.e("MapsData", "SetUrl");
 		sCurrentUrl = inUrl;
 	}
 	
@@ -104,7 +97,6 @@ public class MapsData
 	
 	public static int Section()
 	{
-		Log.e("MapsData", "Section");
 		return sCurrentSection;
 	}
 	
@@ -112,7 +104,6 @@ public class MapsData
 	
 	public static int Page()
 	{
-		Log.e("MapsData", "Page");
 		return sActivePage;
 	}
 	
@@ -120,7 +111,6 @@ public class MapsData
 	
 	public static String Url()
 	{
-		Log.e("MapsData", "Url");
 		return sCurrentUrl;
 	}
 
@@ -131,14 +121,20 @@ public class MapsData
 		sDbHelper.close();
 		sReadableDatabase.close();
 		sWritableDatabase.close();
-		MapsListDbHelper.mList.close();
+
+		if(MapsListDbHelper.mList != null)
+			MapsListDbHelper.mList.close();
+
+		sDbHelper = null;
+		sReadableDatabase = null;
+		sWritableDatabase = null;
+		MapsListDbHelper.mList = null;
 	}
 	
 	
 	
 	private static void PopulateProductJSON()
 	{
-		Log.e("MapsData", "PopulateProductJSON");
 		try
 		{
 			String result = "";
@@ -168,7 +164,6 @@ public class MapsData
 	
 	public static void SetProductJSON(JSONObject inJSON)
 	{
-		Log.e("MapsData", "SetProductJSON");
 		if (inJSON == null)
 			return;
 
@@ -187,7 +182,6 @@ public class MapsData
 		@Override
 		protected void PostExecute(DownloadTask.ResultParms inResult)
 		{
-			Log.e("MapsData", "MapsListUpdater.PostExecute");
             SavedDataManager.SaveFile(SavedDataManager.GetStringResource(R.string.maps_filename), inResult.mData, inResult.mLastModified);
 
             try {

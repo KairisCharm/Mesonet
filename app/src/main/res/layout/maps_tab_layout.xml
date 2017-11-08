@@ -13,6 +13,6 @@
          android:maxHeight="46dp"
          android:adjustViewBounds="true"
          android:src="@drawable/maps_selector"
-         android:contentDescription="@string/empty_text"/>
+         android:contentDescription="@string/maps_tab_description"/>
 
 </RelativeLayout>

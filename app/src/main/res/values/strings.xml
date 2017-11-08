@@ -18,10 +18,20 @@
     <string name="menu_settings">Settings</string>
     <string name="default_station">nrmn</string>
     <string name="default_radar">Oklahoma City</string>
-    <string name="empty_text"></string>
     <string name="siteinfo_update_interval_ms">3600000</string>
     <string name="advisories_update_interval_ms">60000</string>
     <string name="advisories_empty_text">No advisories in effect.</string>
+
+    <string name="locate_btn_description">Select nearest site</string>
+    <string name="local_tab_description">Local conditions</string>
+    <string name="maps_tab_description">Maps</string>
+    <string name="radar_tab_description">Radar</string>
+    <string name="radar_legend_description">Radar Legend</string>
+    <string name="advisories_tab_description">Advisories</string>
+    <string name="advisories_tab_count">Number of advisories</string>
+    <string name="meteogram_btn_description">Meteogram</string>
+    <string name="mesonet_icon">Mesonet</string>
+    <string name="divider">Divider</string>
     
     <string name="contact_web_text">Web:</string>
     <string name="contact_web_button">mesonet.org</string>

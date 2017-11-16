@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <item android:id="@+id/english_menu_item"
+        android:title="@string/settings_english"/>
+
+    <item android:id="@+id/metric_menu_item"
+        android:title="@string/settings_metric"/>
+
+    <item android:id="@+id/radar_transparency_menu_item"
+        android:title="@string/settings_radar_trans"
+        android:visible="false"/>
+
+    <item android:id="@+id/ticker_menu_item"
+        android:title="@string/settings_ticker"/>
+
+    <item android:id="@+id/contact_menu_item"
+        android:title="@string/settings_contact"/>
+
+    <item android:id="@+id/about_menu_item"
+        android:title="@string/settings_about"/>
+</menu>

@@ -1,0 +1,18 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include android:id="@+id/toolBar" layout="@layout/local_and_radar_action_bar_layout"/>
+
+    <!--Since tabs are uniform across all fragments, they are handled in main_activity.xml-->
+
+    <include android:id="@+id/content"
+        layout="@layout/radar_fragment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolBar"
+        android:layout_marginTop="?android:attr/actionBarSize"/>
+    
+</RelativeLayout>

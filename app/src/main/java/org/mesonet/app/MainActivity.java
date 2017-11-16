@@ -1,6 +1,7 @@
 package org.mesonet.app;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
@@ -23,6 +24,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.internal.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.util.Linkify;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -478,17 +483,32 @@ public class MainActivity extends AppCompatActivity
 		else if(inItem.getTitle().toString().equals(SavedDataManager.GetStringResource(R.string.settings_ticker)))
 		{
 			LayoutInflater inflater = MesonetApp.Activity().getLayoutInflater();
-			View popupView = inflater.inflate(R.layout.ticker_about_changes_layout, null);
+			final View popupView = inflater.inflate(R.layout.ticker_about_changes_layout, null);
 
-			WebView tickerText = ((WebView)popupView.findViewById(R.id.popup_view));
+			final WebView tickerText = ((WebView)popupView.findViewById(R.id.popup_view));
 			tickerText.getSettings().setUserAgentString(MesonetApp.UserAgentString());
-			tickerText.loadUrl(SavedDataManager.GetUrl(R.string.ticker_url));
 
-			PopupManager.Popup(popupView, R.string.popup_ticker_title);
+			new DataDownloader(){
+				@Override
+				protected void PostExecute (final DownloadTask.ResultParms inResult)
+				{
+					MainActivity.This().runOnUiThread(new Runnable(){
+						@Override
+						public void run ()
+						{
+							Spannable sp = new SpannableString(Html.fromHtml(inResult.mData));
+							Linkify.addLinks(sp, Linkify.ALL);
+							final String html = "<body>" + Html.toHtml(sp) + "</body>";
+							tickerText.loadData(html, "text/html", "utf-8");
+							PopupManager.Popup(MainActivity.This(), popupView, R.string.popup_ticker_title);
+						}
+					});
+				}
+			}.DoUpdate(new DataDownloader.DownloadTask.DownloadInput(SavedDataManager.GetUrl(R.string.ticker_url), null));
 		}
 		else if(inItem.getTitle().toString().compareTo(SavedDataManager.GetStringResource(R.string.settings_contact)) == 0)
 		{
-			AlertDialog popup = PopupManager.Popup(R.layout.contact_layout, R.string.popup_contact_title);
+			AlertDialog popup = PopupManager.Popup(MainActivity.This(), R.layout.contact_layout, R.string.popup_contact_title);
 
 			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 			lp.copyFrom(popup.getWindow().getAttributes());
@@ -530,7 +550,7 @@ public class MainActivity extends AppCompatActivity
 
 			((WebView)popupView.findViewById(R.id.popup_view)).loadData(text, "text/html", "utf-8");
 
-			PopupManager.Popup(popupView, R.string.settings_about);
+			PopupManager.Popup(MainActivity.This(), popupView, R.string.settings_about);
 		}
 	}
 	

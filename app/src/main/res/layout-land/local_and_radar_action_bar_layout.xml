@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="@android:color/black">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Spinner
+            android:id="@+id/locate_spinner"
+            android:layout_toLeftOf="@+id/locate_button"
+            android:layout_toStartOf="@id/locate_button"
+            android:layout_alignTop="@id/locate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <ImageButton
+            android:id="@+id/locate_button"
+            android:layout_width="?android:attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
+            android:gravity="center"
+            android:background="@android:color/black"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_gps_fixed_grey_36dp"
+            android:contentDescription="@string/locate_btn_description"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>

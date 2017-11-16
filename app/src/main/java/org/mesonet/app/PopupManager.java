@@ -22,16 +22,16 @@ import java.util.Scanner;
 
 public class PopupManager
 {
-    public static AlertDialog Popup(int inLayoutId, int inTitleId)
+    public static AlertDialog Popup(Context inContext, int inLayoutId, int inTitleId)
     {
-        return Popup(MesonetApp.Activity().getLayoutInflater().inflate(inLayoutId, null), inTitleId);
+        return Popup(inContext, MesonetApp.Activity().getLayoutInflater().inflate(inLayoutId, null), inTitleId);
     }
 
 
 
-    public static AlertDialog Popup(View inView, int inTitleId)
+    public static AlertDialog Popup(Context inContext, View inView, int inTitleId)
     {
-        AlertDialog popup = new AlertDialog.Builder(new ContextThemeWrapper(MesonetApp.Context(), android.R.style.Theme_Dialog)).create();
+        AlertDialog popup = new AlertDialog.Builder(new ContextThemeWrapper(inContext, android.R.style.Theme_Dialog)).create();
 
         popup.setTitle(inTitleId);
         popup.setView(inView);

@@ -123,9 +123,9 @@ public class CurrentConditions
 	
 	
 	
-	public synchronized static String Wind()
+	public synchronized static String Wind(boolean inUseCalm)
 	{
-        if(sWind.mMagnitude <= 3.0f)
+        if(sWind.mMagnitude <= 3.0f && inUseCalm)
             return SavedDataManager.GetStringResource(R.string.wind_calm);
 
 		String magnitude = Conversion.CreateDataString(new Conversion.MpsToMphConverter(sWind.mMagnitude), SavedDataManager.GetStringResource(R.string.wind_mph), SavedDataManager.GetStringResource(R.string.wind_mps), 0, false);

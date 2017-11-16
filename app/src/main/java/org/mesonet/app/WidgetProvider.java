@@ -81,7 +81,7 @@ abstract public class WidgetProvider extends AppWidgetProvider
 		inViews.setTextViewText(R.id.widget_tair, CurrentConditions.AirTemp());
 		
 		inViews.setTextViewText(R.id.widget_feelslike, CurrentConditions.FeelsLike());
-		inViews.setTextViewText(R.id.widget_wind, CurrentConditions.Wind());
+		inViews.setTextViewText(R.id.widget_wind, CurrentConditions.Wind(false));
 		inViews.setTextViewText(R.id.widget_time, CurrentConditions.Time());
 	}
 	

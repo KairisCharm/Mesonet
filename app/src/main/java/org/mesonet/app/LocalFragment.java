@@ -227,7 +227,7 @@ public class LocalFragment extends StaticFragment
 		if(!Activated())
 			return;
 
-		This().mCurrCondControls.SetTexts(CurrentConditions.Time(), CurrentConditions.AirTemp(), CurrentConditions.FeelsLike(), CurrentConditions.Dewpoint(), CurrentConditions.Wind(), CurrentConditions.Rain24Hr(), CurrentConditions.Humidity(), CurrentConditions.Gusts(), CurrentConditions.Pressure());
+		This().mCurrCondControls.SetTexts(CurrentConditions.Time(), CurrentConditions.AirTemp(), CurrentConditions.FeelsLike(), CurrentConditions.Dewpoint(), CurrentConditions.Wind(false), CurrentConditions.Rain24Hr(), CurrentConditions.Humidity(), CurrentConditions.Gusts(), CurrentConditions.Pressure());
 
         if(CurrentConditions.MeteoUrl() != null && This().mMeteoPage.getUrl() != null && This().mMeteoPage.getUrl().compareTo(CurrentConditions.MeteoUrl()) != 0)
         {
